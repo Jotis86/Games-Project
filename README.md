@@ -98,6 +98,7 @@ The goal of this project is to develop a collection of classic games that can be
 ## Streamlit App 🌐
 
 The streamlit_app directory contains the files necessary to run a web-based version of the games using Streamlit. This allows you to play the games in a web browser with a graphical user interface.
+You can try the app [here](https://games-project-hgkadwvnzyvmvwoaatvgne.streamlit.app/)
 
 ### How to Run the Streamlit App
 
