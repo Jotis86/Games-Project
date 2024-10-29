@@ -1,0 +1,2 @@
+# External libraries
+streamlit==1.39.0  
