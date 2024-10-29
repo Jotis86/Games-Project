@@ -77,23 +77,23 @@ The goal of this project is to develop a collection of classic games that can be
 
 ## Project Structure 📂
 
-games/
-├── tic_tac_toe/ ❌⭕
-│   ├── __init__.py
-│   ├── tic_tac_toe.py
-├── battleship/ 🚢💥
-│   ├── __init__.py
-│   ├── battleship.py
-├── rock_paper_scissors_lizard_spock/ ✊📄✂️🦎🖖
-│   ├── __init__.py
-│   ├── rpsls.py
-├── streamlit_app/ 🌐
-│   ├── __init__.py
-│   ├── app.py
-├── .gitignore 🚫
-├── main.py
-├── README.md
-└── requirements.txt
+- **games/**
+  - **tic_tac_toe/** ❌⭕
+    - `__init__.py`
+    - `tic_tac_toe.py`
+  - **battleship/** 🚢💥
+    - `__init__.py`
+    - `battleship.py`
+  - **rock_paper_scissors_lizard_spock/** ✊📄✂️🦎🖖
+    - `__init__.py`
+    - `rpsls.py`
+  - **streamlit_app/** 🌐
+    - `__init__.py`
+    - `app.py`
+- `.gitignore` 🚫
+- `main.py`
+- `README.md`
+- `requirements.txt`
 
 ## Streamlit App 🌐
 
