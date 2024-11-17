@@ -1,5 +1,13 @@
 # 🎮 Games Project 🎮
 
+![Imagen del Proyecto](images/mando.png)
+
+![Commits](https://img.shields.io/github/commit-activity/m/Jotis86/Games-Project)
+![Issues Abiertas](https://img.shields.io/github/issues/Jotis86/Games-Project)
+![Pull Requests](https://img.shields.io/github/issues-pr/Jotis86/Games-Project)
+![Forks](https://img.shields.io/github/forks/Jotis86/Games-Project)
+![Tamaño del Repositorio](https://img.shields.io/github/repo-size/Jotis86/Games-Project)
+
 ## Objectives and Included Games 🎯🎲
 
 The goal of this project is to develop a collection of classic games that can be played from the command line. Each game is designed to provide a fun and challenging experience, whether you're playing against another human player or the computer. The included games are:
