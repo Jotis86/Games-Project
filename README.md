@@ -131,8 +131,8 @@ Contributions are welcome! If you want to contribute to this project, please fol
 
 If you have any questions, suggestions, or feedback, feel free to reach out:
 
-- **Email**: jotaduranbon@gmail.com
-- **LinkedIn**: www.linkedin.com/in/juan-duran-bon
+- 📧 **Email**: jotaduranbon@gmail.com
+- 💼 **LinkedIn**: [Juan Duran Bon](https://www.linkedin.com/in/juan-duran-bon)
 
 
 We appreciate your interest and support! 🙏
