@@ -134,6 +134,10 @@ If you have any questions, suggestions, or feedback, feel free to reach out:
 - 📧 **Email**: jotaduranbon@gmail.com
 - 💼 **LinkedIn**: [Juan Duran Bon](https://www.linkedin.com/in/juan-duran-bon)
 
+## License 📄
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
 We appreciate your interest and support! 🙏
 
