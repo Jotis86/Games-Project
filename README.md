@@ -7,6 +7,9 @@
 ![Pull Requests](https://img.shields.io/github/issues-pr/Jotis86/Games-Project)
 ![Forks](https://img.shields.io/github/forks/Jotis86/Games-Project)
 ![Tamaño del Repositorio](https://img.shields.io/github/repo-size/Jotis86/Games-Project)
+![Autor](https://img.shields.io/badge/autor-Juan%20Duran%20Bon-blue)
+![Licencia](https://img.shields.io/github/license/Jotis86/Games-Project)
+
 
 ## Objectives and Included Games 🎯🎲
 
