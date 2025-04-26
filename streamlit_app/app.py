@@ -454,7 +454,7 @@ def reset_rpsls():
 
 # TIC TAC TOE IMPLEMENTATION
 def play_tic_tac_toe(difficulty):
-    st.markdown('<div class="game-container">', unsafe_allow_html=True)
+    #st.markdown('<div class="game-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="game-title">Tic Tac Toe ❌⭕</h2>', unsafe_allow_html=True)
     
     # Initialize session state
@@ -611,7 +611,7 @@ def reset_tic_tac_toe():
 
 # BATTLESHIP IMPLEMENTATION
 def play_battleship():
-    st.markdown('<div class="game-container">', unsafe_allow_html=True)
+    #st.markdown('<div class="game-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="game-title">Battleship 🚢</h2>', unsafe_allow_html=True)
     
     # Initialize battleship state
