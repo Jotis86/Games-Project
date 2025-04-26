@@ -8,11 +8,11 @@ import io
 # Set page configuration
 st.set_page_config(page_title="Arcade Games Hub", layout="wide", initial_sidebar_state="expanded")
 
-# Enhanced CSS for better styling
+# Update the CSS with this completely new sidebar design
 def load_css():
     st.markdown("""
     <style>
-    /* Enhanced styling with gradients and better colors */
+    /* Main app styling */
     .header-container {
         background: linear-gradient(135deg, #6e8efb, #a777e3);
         padding: 1.8rem;
@@ -23,38 +23,10 @@ def load_css():
         color: white;
     }
     
-    /* Apply gradient to sidebar - this targets Streamlit's sidebar */
-    section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #6e8efb, #a777e3);
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    /* Make sidebar content stand out against gradient background */
-    section[data-testid="stSidebar"] .element-container {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        padding: 10px;
-        margin-bottom: 10px;
-    }
-    
-    /* Ensure text in sidebar is visible */
-    section[data-testid="stSidebar"] p,
-    section[data-testid="stSidebar"] span,
-    section[data-testid="stSidebar"] label,
-    section[data-testid="stSidebar"] div {
-        color: white !important;
-    }
-    
     .header-container h1 {
         font-size: 3rem;
         margin-bottom: 0.5rem;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-    }
-    
-    .header-container h2 {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     }
     
     .header-container p {
@@ -62,6 +34,103 @@ def load_css():
         opacity: 0.9;
     }
     
+    /* COMPLETELY NEW SIDEBAR DESIGN */
+    [data-testid="stSidebar"] {
+        background-color: #f8f9fa;
+        border-right: none;
+    }
+    
+    .sidebar-container {
+        padding: 1.5rem;
+        margin: -1rem -1rem 0 -1rem;
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
+        color: white;
+        border-radius: 0 0 20px 20px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .sidebar-container h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        color: white;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+    
+    .sidebar-container p {
+        font-size: 1rem;
+        color: white;
+        opacity: 0.9;
+    }
+    
+    .game-option {
+        margin: 0.8rem 0;
+        padding: 0.8rem;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: all 0.3s;
+        font-weight: 500;
+        text-align: center;
+        color: #555;
+        border-left: 4px solid transparent;
+    }
+    
+    .game-option:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        border-left: 4px solid #6e8efb;
+    }
+    
+    .game-option.active {
+        background-color: #f0f4ff;
+        border-left: 4px solid #6e8efb;
+        color: #3a5bb8;
+        font-weight: 600;
+    }
+    
+    .sidebar-separator {
+        margin: 1.5rem 0;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+        border: none;
+    }
+    
+    .sidebar-footer {
+        margin-top: 2rem;
+        padding: 1rem;
+        background: linear-gradient(135deg, #a777e3, #6e8efb);
+        border-radius: 10px;
+        color: white;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .github-link {
+        margin: 1.5rem auto;
+        padding: 0.8rem;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+        color: #333;
+        text-decoration: none;
+    }
+    
+    .github-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .github-link img {
+        width: 24px;
+        margin-right: 8px;
+    }
+    
+    /* Game container styling */
     .game-container {
         background-color: white;
         padding: 2rem;
@@ -79,20 +148,25 @@ def load_css():
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
-    /* Fix the score display with better contrast */
+    /* FIXED SCOREBOARD with better contrast */
     .score-card {
-        background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+        background-color: white;
         padding: 1.2rem;
         border-radius: 12px;
         text-align: center;
         margin-bottom: 1.5rem;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        border: 1px solid #dee2e6;
-        color: #333; /* Ensure text is dark for better contrast */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        border: 1px solid #e9ecef;
+    }
+    
+    .score-card h3 {
+        color: #555;
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
     }
     
     .score-value {
-        font-size: 2.8rem;
+        font-size: 3rem;
         font-weight: bold;
         margin: 0.5rem 0;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
@@ -101,7 +175,7 @@ def load_css():
     .player-score { color: #3a5bb8; }
     .computer-score { color: #c62828; }
     
-    /* Enhanced win/lose messages with better visual appeal */
+    /* Enhanced win/lose messages */
     .game-result {
         text-align: center;
         padding: 1.5rem;
@@ -130,40 +204,24 @@ def load_css():
     }
     
     .result-win { 
-        background: linear-gradient(to right, rgba(76, 175, 80, 0.3), rgba(76, 175, 80, 0.1)); 
+        background: linear-gradient(to right, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.1)); 
         color: #2e7d32; 
         border-left: 5px solid #2e7d32;
     }
     
     .result-lose { 
-        background: linear-gradient(to right, rgba(244, 67, 54, 0.3), rgba(244, 67, 54, 0.1)); 
+        background: linear-gradient(to right, rgba(244, 67, 54, 0.2), rgba(244, 67, 54, 0.1)); 
         color: #c62828; 
         border-left: 5px solid #c62828;
     }
     
     .result-draw { 
-        background: linear-gradient(to right, rgba(255, 152, 0, 0.3), rgba(255, 152, 0, 0.1)); 
+        background: linear-gradient(to right, rgba(255, 152, 0, 0.2), rgba(255, 152, 0, 0.1)); 
         color: #ef6c00; 
         border-left: 5px solid #ef6c00;
     }
     
-    /* Choice buttons */
-    .choice-btn {
-        padding: 10px;
-        border-radius: 50%;
-        font-size: 2rem;
-        background-color: white;
-        border: 2px solid #dee2e6;
-        transition: all 0.3s;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    
-    .choice-btn:hover {
-        transform: scale(1.1);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    /* Tic Tac Toe board */
+    /* Tic Tac Toe styling */
     .ttt-cell {
         height: 110px;
         display: flex;
@@ -187,57 +245,7 @@ def load_css():
     .ttt-x { color: #6e8efb; }
     .ttt-o { color: #f44336; }
     
-    /* Style sidebar game selection buttons for better contrast */
-    .game-selector button {
-        background: rgba(255, 255, 255, 0.2);
-        color: white;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        transition: all 0.3s;
-    }
-    
-    .game-selector button:hover {
-        background: rgba(255, 255, 255, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-    }
-    
-    /* Update GitHub link in sidebar for better visibility */
-    .github-link {
-        background: rgba(255, 255, 255, 0.2);
-        text-align: center;
-        margin-top: 1.5rem;
-        padding: 1rem;
-        border-radius: 10px;
-    }
-    
-    .github-link a {
-        color: white !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        font-weight: 500;
-    }
-    
-    .github-link img {
-        margin-right: 8px;
-        filter: brightness(0) invert(1);
-    }
-    
-    /* Ensure sidebar footer is visible */
-    .sidebar-footer {
-        background: rgba(0, 0, 0, 0.2);
-        color: white;
-        border-radius: 10px;
-        margin-top: 2rem;
-        text-align: center;
-        padding: 1rem;
-    }
-    
-    /* Battleship grid */
-    .battleship-grid {
-        margin: 0 auto;
-    }
-    
+    /* Battleship styling */
     .ship-cell { 
         background: linear-gradient(to bottom, #bbdefb, #90caf9);
         border: 1px solid #64b5f6;
@@ -253,10 +261,11 @@ def load_css():
     </style>
     """, unsafe_allow_html=True)
 
+# And replace your sidebar code with this completely redesigned version:
 def main():
     load_css()
     
-    # Simplified header
+    # Main app header
     st.markdown("""
     <div class="header-container">
         <h1>Arcade Games Hub</h1>
@@ -264,16 +273,17 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # Enhanced sidebar with matching gradient (applied via CSS)
+    # COMPLETELY REDESIGNED SIDEBAR
     with st.sidebar:
+        # Custom sidebar header
         st.markdown("""
-        <div style="text-align: center; margin-bottom: 1.5rem;">
-            <h2 style="color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);">Game Selection</h2>
-            <p style="color: white; opacity: 0.9;">Choose your favorite game to play</p>
+        <div class="sidebar-container">
+            <h2>Game Selection</h2>
+            <p>Choose your favorite game to play</p>
         </div>
         """, unsafe_allow_html=True)
         
-        # Create simpler game selector without emojis
+        # Create game selector
         games = [
             "Battleship",
             "Tic Tac Toe",
@@ -284,35 +294,42 @@ def main():
         if 'selected_game' not in st.session_state:
             st.session_state.selected_game = "Battleship"
         
-        # Display game options
+        # Display game options with better styling
+        st.markdown("<div style='padding: 1rem 0;'>", unsafe_allow_html=True)
         for game_name in games:
             is_selected = st.session_state.selected_game == game_name
-            if st.button(
-                game_name,
-                key=f"btn_{game_name}",
-                use_container_width=True,
-                type="primary" if is_selected else "secondary",
-            ):
+            active_class = "active" if is_selected else ""
+            
+            st.markdown(f"""
+            <div class="game-option {active_class}" id="btn_{game_name}" 
+                 onclick="document.getElementById('btn_{game_name}_hidden').click()">
+                {game_name}
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Hidden button to handle the click
+            if st.button(game_name, key=f"btn_{game_name}_hidden", label_visibility="collapsed"):
                 st.session_state.selected_game = game_name
                 st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
         
-        st.markdown("<hr style='background-color: rgba(255,255,255,0.3); height: 1px; border: none; margin: 1.5rem 0;'>", unsafe_allow_html=True)
+        st.markdown("<hr class='sidebar-separator'>", unsafe_allow_html=True)
         
-        # Show difficulty settings for Tic Tac Toe with better contrast
+        # Show difficulty settings for Tic Tac Toe
         if st.session_state.selected_game == "Tic Tac Toe":
+            st.markdown("<div style='padding: 0 0.5rem;'>", unsafe_allow_html=True)
             difficulty = st.radio("Difficulty:", ["Easy", "Hard"])
+            st.markdown("</div>", unsafe_allow_html=True)
         
         # GitHub link with better styling
         st.markdown("""
-        <div class="github-link">
-            <a href="https://github.com/Jotis86/Games-Project" target="_blank">
-                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="30">
-                <span style="margin-left: 8px; vertical-align: middle; color: white;">View on GitHub</span>
-            </a>
-        </div>
+        <a href="https://github.com/Jotis86/Games-Project" target="_blank" class="github-link">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
+            View on GitHub
+        </a>
         """, unsafe_allow_html=True)
         
-        # Footer with better visibility
+        # Footer
         st.markdown("""
         <div class="sidebar-footer">
             <p>Made with ❤️ and Streamlit</p>
@@ -362,7 +379,7 @@ def display_rules(game_type):
             - First to score 3 points wins
             """)
 
-# ROCK PAPER SCISSORS LIZARD SPOCK IMPLEMENTATION
+# Replace the score display in the Rock Paper Scissors function
 def play_rpsls():
     st.markdown('<div class="game-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="game-title">Rock Paper Scissors Lizard Spock ✊✋✌️🦎🖖</h2>', unsafe_allow_html=True)
@@ -381,23 +398,23 @@ def play_rpsls():
     if 'computer_choice' not in st.session_state:
         st.session_state.computer_choice = None
     
-    # Display scores
+    # Display scores with enhanced styling for better visibility
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("""
+        st.markdown(f"""
         <div class="score-card">
             <h3>Your Score</h3>
-            <div class="score-value player-score">{}</div>
+            <div class="score-value player-score">{st.session_state.player_score}</div>
         </div>
-        """.format(st.session_state.player_score), unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
     
     with col2:
-        st.markdown("""
+        st.markdown(f"""
         <div class="score-card">
             <h3>Computer's Score</h3>
-            <div class="score-value computer-score">{}</div>
+            <div class="score-value computer-score">{st.session_state.computer_score}</div>
         </div>
-        """.format(st.session_state.computer_score), unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
     
     # Game result display
     if st.session_state.round_result:
