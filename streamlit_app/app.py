@@ -239,7 +239,7 @@ def main():
         st.markdown("""
         <div style="margin-top: 30px; padding: 15px; text-align: center; background: rgba(0,0,0,0.2); border-radius: 10px;">
             <p style="color: white !important; margin: 5px 0;">Made with ❤️ and Streamlit</p>
-            <p style="color: white !important; font-size: 0.8rem; opacity: 0.7;">© 2023 Arcade Games Hub</p>
+            <p style="color: white !important; font-size: 0.8rem; opacity: 0.7;">© 2025 Arcade Games Hub</p>
         </div>
         """, unsafe_allow_html=True)
     
