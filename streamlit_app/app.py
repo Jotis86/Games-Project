@@ -34,17 +34,12 @@ def load_css():
         opacity: 0.9;
     }
     
-    /* COMPLETELY NEW SIDEBAR DESIGN */
-    [data-testid="stSidebar"] {
-        background-color: #f8f9fa;
-        border-right: none;
-    }
-    
+    /* Simplified sidebar styling with inline colors */
     .sidebar-container {
         padding: 1.5rem;
         margin: -1rem -1rem 0 -1rem;
         background: linear-gradient(135deg, #6e8efb, #a777e3);
-        color: white;
+        color: white !important;
         border-radius: 0 0 20px 20px;
         text-align: center;
         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -53,41 +48,27 @@ def load_css():
     .sidebar-container h2 {
         font-size: 1.8rem;
         margin-bottom: 0.5rem;
-        color: white;
+        color: white !important;
         text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     }
     
     .sidebar-container p {
         font-size: 1rem;
-        color: white;
+        color: white !important;
         opacity: 0.9;
     }
     
-    .game-option {
-        margin: 0.8rem 0;
-        padding: 0.8rem;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        transition: all 0.3s;
-        font-weight: 500;
-        text-align: center;
-        color: #555;
-        border-left: 4px solid transparent;
-        cursor: pointer;
+    /* Radio buttons with better contrast */
+    .stRadio > div {
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        padding: 10px !important;
+        border-radius: 10px !important;
+        margin-bottom: 10px !important;
     }
     
-    .game-option:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        border-left: 4px solid #6e8efb;
-    }
-    
-    .game-option.active {
-        background-color: #f0f4ff;
-        border-left: 4px solid #6e8efb;
-        color: #3a5bb8;
-        font-weight: 600;
+    .stRadio label {
+        color: #333 !important;
+        font-weight: 500 !important;
     }
     
     .sidebar-separator {
@@ -102,9 +83,14 @@ def load_css():
         padding: 1rem;
         background: linear-gradient(135deg, #a777e3, #6e8efb);
         border-radius: 10px;
-        color: white;
+        color: white !important;
         text-align: center;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .sidebar-footer p {
+        color: white !important;
+        margin: 0.5rem 0;
     }
     
     .github-link {
@@ -117,7 +103,7 @@ def load_css():
         align-items: center;
         justify-content: center;
         transition: all 0.3s;
-        color: #333;
+        color: #333 !important;
         text-decoration: none;
     }
     
@@ -273,8 +259,17 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # SIMPLIFIED SIDEBAR THAT SHOULD WORK ON ALL STREAMLIT VERSIONS
+    # FIXED SIDEBAR WITH INLINE BACKGROUND COLOR
     with st.sidebar:
+        # Add a background color to the whole sidebar
+        st.markdown("""
+        <style>
+        [data-testid="stSidebar"] > div {
+            background-color: #f0f2f6;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+        
         # Custom sidebar header
         st.markdown("""
         <div class="sidebar-container">
@@ -294,45 +289,50 @@ def main():
         if 'selected_game' not in st.session_state:
             st.session_state.selected_game = "Battleship"
         
-        # Display game options (simplified approach)
-        st.markdown("<div style='padding: 1rem 0;'>", unsafe_allow_html=True)
+        # Display game options with explicit styling
+        st.markdown("""
+        <div style="padding: 1rem 0; background-color: #f0f2f6; color: #333; border-radius: 10px;">
+            <h3 style="margin-left: 0.5rem; color: #333; font-size: 1rem;">Select a game:</h3>
+        </div>
+        """, unsafe_allow_html=True)
         
-        # Simple radio button selection instead of custom buttons
+        # Radio button selection
         selected_game = st.radio(
-            "Select a game:",
+            "",  # Empty label
             games,
-            index=games.index(st.session_state.selected_game),
-            label_visibility="collapsed"
+            index=games.index(st.session_state.selected_game)
         )
         
         # Update the session state if selection changed
         if selected_game != st.session_state.selected_game:
             st.session_state.selected_game = selected_game
             st.rerun()
-            
-        st.markdown("</div>", unsafe_allow_html=True)
         
         st.markdown("<hr class='sidebar-separator'>", unsafe_allow_html=True)
         
-        # Show difficulty settings for Tic Tac Toe
+        # Show difficulty settings for Tic Tac Toe with better styling
+        difficulty = "Easy"  # Default value
         if st.session_state.selected_game == "Tic Tac Toe":
-            st.markdown("<div style='padding: 0 0.5rem;'>", unsafe_allow_html=True)
-            difficulty = st.radio("Difficulty:", ["Easy", "Hard"])
-            st.markdown("</div>", unsafe_allow_html=True)
+            st.markdown("""
+            <div style="background-color: #f0f2f6; padding: 1rem; border-radius: 10px; margin-bottom: 1rem;">
+                <h3 style="margin-bottom: 0.5rem; color: #333; font-size: 1rem;">Difficulty level:</h3>
+            </div>
+            """, unsafe_allow_html=True)
+            difficulty = st.radio("", ["Easy", "Hard"])
         
-        # GitHub link with better styling
+        # GitHub link with explicit styling
         st.markdown("""
         <a href="https://github.com/Jotis86/Games-Project" target="_blank" class="github-link">
             <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
-            View on GitHub
+            <span style="color: #333;">View on GitHub</span>
         </a>
         """, unsafe_allow_html=True)
         
-        # Footer
+        # Footer with explicit text color
         st.markdown("""
         <div class="sidebar-footer">
-            <p>Made with ❤️ and Streamlit</p>
-            <p style="font-size: 0.8rem; opacity: 0.7;">© 2023 Arcade Games Hub</p>
+            <p style="color: white !important;">Made with ❤️ and Streamlit</p>
+            <p style="font-size: 0.8rem; opacity: 0.7; color: white !important;">© 2023 Arcade Games Hub</p>
         </div>
         """, unsafe_allow_html=True)
     
@@ -348,6 +348,9 @@ def main():
     else:  # Rock Paper Scissors Lizard Spock
         display_rules("rpsls")
         play_rpsls()
+
+
+
 
 def display_rules(game_type):
     with st.expander("Game Rules", expanded=False):
