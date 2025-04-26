@@ -23,6 +23,28 @@ def load_css():
         color: white;
     }
     
+    /* Apply gradient to sidebar - this targets Streamlit's sidebar */
+    section[data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #6e8efb, #a777e3);
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Make sidebar content stand out against gradient background */
+    section[data-testid="stSidebar"] .element-container {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    /* Ensure text in sidebar is visible */
+    section[data-testid="stSidebar"] p,
+    section[data-testid="stSidebar"] span,
+    section[data-testid="stSidebar"] label,
+    section[data-testid="stSidebar"] div {
+        color: white !important;
+    }
+    
     .header-container h1 {
         font-size: 3rem;
         margin-bottom: 0.5rem;
@@ -57,6 +79,7 @@ def load_css():
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
+    /* Fix the score display with better contrast */
     .score-card {
         background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
         padding: 1.2rem;
@@ -65,30 +88,64 @@ def load_css():
         margin-bottom: 1.5rem;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         border: 1px solid #dee2e6;
+        color: #333; /* Ensure text is dark for better contrast */
     }
     
     .score-value {
         font-size: 2.8rem;
         font-weight: bold;
         margin: 0.5rem 0;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
-    .player-score { color: #6e8efb; }
-    .computer-score { color: #f44336; }
+    .player-score { color: #3a5bb8; }
+    .computer-score { color: #c62828; }
     
+    /* Enhanced win/lose messages with better visual appeal */
     .game-result {
         text-align: center;
-        padding: 1.2rem;
-        border-radius: 10px;
-        margin: 1.2rem 0;
+        padding: 1.5rem;
+        border-radius: 15px;
+        margin: 1.5rem 0;
         font-weight: bold;
-        font-size: 1.2rem;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        font-size: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
     }
     
-    .result-win { background-color: rgba(76, 175, 80, 0.2); color: #388e3c; }
-    .result-lose { background-color: rgba(244, 67, 54, 0.2); color: #d32f2f; }
-    .result-draw { background-color: rgba(255, 152, 0, 0.2); color: #f57c00; }
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        50% {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        100% {
+            transform: scale(1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    }
+    
+    .result-win { 
+        background: linear-gradient(to right, rgba(76, 175, 80, 0.3), rgba(76, 175, 80, 0.1)); 
+        color: #2e7d32; 
+        border-left: 5px solid #2e7d32;
+    }
+    
+    .result-lose { 
+        background: linear-gradient(to right, rgba(244, 67, 54, 0.3), rgba(244, 67, 54, 0.1)); 
+        color: #c62828; 
+        border-left: 5px solid #c62828;
+    }
+    
+    .result-draw { 
+        background: linear-gradient(to right, rgba(255, 152, 0, 0.3), rgba(255, 152, 0, 0.1)); 
+        color: #ef6c00; 
+        border-left: 5px solid #ef6c00;
+    }
     
     /* Choice buttons */
     .choice-btn {
@@ -130,72 +187,55 @@ def load_css():
     .ttt-x { color: #6e8efb; }
     .ttt-o { color: #f44336; }
     
-    /* GitHub button */
+    /* Style sidebar game selection buttons for better contrast */
+    .game-selector button {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s;
+    }
+    
+    .game-selector button:hover {
+        background: rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    
+    /* Update GitHub link in sidebar for better visibility */
     .github-link {
+        background: rgba(255, 255, 255, 0.2);
         text-align: center;
         margin-top: 1.5rem;
         padding: 1rem;
         border-radius: 10px;
-        background-color: #f8f9fa;
     }
     
     .github-link a {
+        color: white !important;
         display: flex;
         align-items: center;
         justify-content: center;
         text-decoration: none;
-        color: #333;
         font-weight: 500;
     }
     
     .github-link img {
         margin-right: 8px;
+        filter: brightness(0) invert(1);
+    }
+    
+    /* Ensure sidebar footer is visible */
+    .sidebar-footer {
+        background: rgba(0, 0, 0, 0.2);
+        color: white;
+        border-radius: 10px;
+        margin-top: 2rem;
+        text-align: center;
+        padding: 1rem;
     }
     
     /* Battleship grid */
     .battleship-grid {
         margin: 0 auto;
-    }
-    
-    /* Game selector buttons */
-    .game-selector {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin: 1rem 0;
-    }
-    
-    .game-option {
-        padding: 12px;
-        border-radius: 10px;
-        background-color: #f0f2f6;
-        border: 1px solid #dee2e6;
-        text-align: center;
-        transition: all 0.3s;
-        cursor: pointer;
-    }
-    
-    .game-option:hover {
-        background-color: #e2e6ff;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    
-    .game-option.active {
-        background: linear-gradient(to right, #6e8efb, #a777e3);
-        color: white;
-        border: none;
-        box-shadow: 0 4px 10px rgba(110, 142, 251, 0.3);
-    }
-    
-    .sidebar-footer {
-        background: linear-gradient(135deg, #a777e3, #6e8efb);
-        padding: 1rem;
-        border-radius: 10px;
-        margin-top: 2rem;
-        text-align: center;
-        color: white;
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
     }
     
     .ship-cell { 
@@ -216,7 +256,7 @@ def load_css():
 def main():
     load_css()
     
-    # Simplified header - no overlapping images
+    # Simplified header
     st.markdown("""
     <div class="header-container">
         <h1>Arcade Games Hub</h1>
@@ -224,12 +264,12 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # Enhanced sidebar with matching gradient
+    # Enhanced sidebar with matching gradient (applied via CSS)
     with st.sidebar:
         st.markdown("""
-        <div class="header-container">
-            <h2>Game Selection</h2>
-            <p>Choose your favorite game to play</p>
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+            <h2 style="color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);">Game Selection</h2>
+            <p style="color: white; opacity: 0.9;">Choose your favorite game to play</p>
         </div>
         """, unsafe_allow_html=True)
         
@@ -244,25 +284,21 @@ def main():
         if 'selected_game' not in st.session_state:
             st.session_state.selected_game = "Battleship"
         
-        # Display game options without emojis
-        st.markdown('<div class="game-selector">', unsafe_allow_html=True)
+        # Display game options
         for game_name in games:
-            is_active = st.session_state.selected_game == game_name
-            active_class = "active" if is_active else ""
-            
+            is_selected = st.session_state.selected_game == game_name
             if st.button(
-                f"{game_name}", 
+                game_name,
                 key=f"btn_{game_name}",
                 use_container_width=True,
+                type="primary" if is_selected else "secondary",
             ):
                 st.session_state.selected_game = game_name
                 st.rerun()
         
-        st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown("<hr style='background-color: rgba(255,255,255,0.3); height: 1px; border: none; margin: 1.5rem 0;'>", unsafe_allow_html=True)
         
-        st.markdown("---")
-        
-        # Show difficulty settings for Tic Tac Toe
+        # Show difficulty settings for Tic Tac Toe with better contrast
         if st.session_state.selected_game == "Tic Tac Toe":
             difficulty = st.radio("Difficulty:", ["Easy", "Hard"])
         
@@ -271,12 +307,12 @@ def main():
         <div class="github-link">
             <a href="https://github.com/Jotis86/Games-Project" target="_blank">
                 <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="30">
-                View on GitHub
+                <span style="margin-left: 8px; vertical-align: middle; color: white;">View on GitHub</span>
             </a>
         </div>
         """, unsafe_allow_html=True)
         
-        # Add a nice footer
+        # Footer with better visibility
         st.markdown("""
         <div class="sidebar-footer">
             <p>Made with ❤️ and Streamlit</p>
@@ -531,12 +567,20 @@ def play_tic_tac_toe(difficulty):
     
     # Game over state
     if st.session_state.ttt_game_over:
+        result_message = ""
+        result_class = ""
+        
         if st.session_state.ttt_winner == "Draw":
-            st.warning("It's a draw!")
+            result_message = "It's a draw!"
+            result_class = "result-draw"
         elif st.session_state.ttt_winner == "X":
-            st.success("🎉 You win! 🎉")
+            result_message = "🎉 You win! 🎉"
+            result_class = "result-win"
         else:
-            st.error("💔 Computer wins! 💔")
+            result_message = "💔 Computer wins! 💔"
+            result_class = "result-lose"
+        
+        st.markdown(f'<div class="game-result {result_class}">{result_message}</div>', unsafe_allow_html=True)
         
         if st.button("Play Again", key="ttt_play_again"):
             reset_tic_tac_toe()
@@ -680,7 +724,7 @@ def play_battleship():
     # Game over states - Fixed the conditional display
     if st.session_state.bs_ships_placed:
         if check_battleship_winner(st.session_state.bs_computer_hidden_board):
-            st.success("🎉 VICTORY! You sank all enemy ships! 🎉")
+            st.markdown('<div class="game-result result-win">🎉 VICTORY! You sank all enemy ships! 🎉</div>', unsafe_allow_html=True)
             st.session_state.bs_game_started = False
             
             if st.button("Play Again", key="bs_play_again1"):
@@ -688,7 +732,7 @@ def play_battleship():
                 st.rerun()
                 
         elif check_battleship_winner(st.session_state.bs_player_board):
-            st.error("💔 DEFEAT! Your fleet has been destroyed! 💔")
+            st.markdown('<div class="game-result result-lose">💔 DEFEAT! Your fleet has been destroyed! 💔</div>', unsafe_allow_html=True)
             st.session_state.bs_game_started = False
             
             if st.button("Play Again", key="bs_play_again2"):
