@@ -12,7 +12,7 @@ st.set_page_config(page_title="Arcade Games Hub", layout="wide", initial_sidebar
 def load_css():
     st.markdown("""
     <style>
-    /* Main app styling */
+    /* Basic styling for the main app */
     .header-container {
         background: linear-gradient(135deg, #6e8efb, #a777e3);
         padding: 1.8rem;
@@ -23,108 +23,18 @@ def load_css():
         color: white;
     }
     
-    .header-container h1 {
-        font-size: 3rem;
-        margin-bottom: 0.5rem;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    /* Force sidebar background color with !important */
+    section[data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #6e8efb, #a777e3) !important;
     }
     
-    .header-container p {
-        font-size: 1.2rem;
-        opacity: 0.9;
-    }
-    
-    /* Simplified sidebar styling with inline colors */
-    .sidebar-container {
-        padding: 1.5rem;
-        margin: -1rem -1rem 0 -1rem;
-        background: linear-gradient(135deg, #6e8efb, #a777e3);
-        color: white !important;
-        border-radius: 0 0 20px 20px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    
-    .sidebar-container h2 {
-        font-size: 1.8rem;
-        margin-bottom: 0.5rem;
-        color: white !important;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    }
-    
-    .sidebar-container p {
-        font-size: 1rem;
-        color: white !important;
-        opacity: 0.9;
-    }
-    
-    /* Radio buttons with better contrast */
-    .stRadio > div {
-        background-color: rgba(255, 255, 255, 0.9) !important;
-        padding: 10px !important;
-        border-radius: 10px !important;
-        margin-bottom: 10px !important;
-    }
-    
-    .stRadio label {
-        color: #333 !important;
-        font-weight: 500 !important;
-    }
-    
-    .sidebar-separator {
-        margin: 1.5rem 0;
-        height: 1px;
-        background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
-        border: none;
-    }
-    
-    .sidebar-footer {
-        margin-top: 2rem;
-        padding: 1rem;
-        background: linear-gradient(135deg, #a777e3, #6e8efb);
-        border-radius: 10px;
-        color: white !important;
-        text-align: center;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    
-    .sidebar-footer p {
-        color: white !important;
-        margin: 0.5rem 0;
-    }
-    
-    .github-link {
-        margin: 1.5rem auto;
-        padding: 0.8rem;
-        background-color: rgba(255, 255, 255, 0.9);
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s;
-        color: #333 !important;
-        text-decoration: none;
-    }
-    
-    .github-link:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    
-    .github-link img {
-        width: 24px;
-        margin-right: 8px;
-    }
-    
-    /* Game container styling */
+    /* Style game container and other elements */
     .game-container {
         background-color: white;
         padding: 2rem;
         border-radius: 15px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         margin-bottom: 2rem;
-        border: 1px solid #f0f2f6;
     }
     
     .game-title {
@@ -132,10 +42,9 @@ def load_css():
         text-align: center;
         margin-bottom: 1.5rem;
         font-size: 2.2rem;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
-    /* FIXED SCOREBOARD with better contrast */
+    /* Score cards for Rock Paper Scissors */
     .score-card {
         background-color: white;
         padding: 1.2rem;
@@ -143,7 +52,6 @@ def load_css():
         text-align: center;
         margin-bottom: 1.5rem;
         box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        border: 1px solid #e9ecef;
     }
     
     .score-card h3 {
@@ -156,13 +64,12 @@ def load_css():
         font-size: 3rem;
         font-weight: bold;
         margin: 0.5rem 0;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
     .player-score { color: #3a5bb8; }
     .computer-score { color: #c62828; }
     
-    /* Enhanced win/lose messages */
+    /* Game result messages */
     .game-result {
         text-align: center;
         padding: 1.5rem;
@@ -171,23 +78,13 @@ def load_css():
         font-weight: bold;
         font-size: 1.5rem;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
         animation: pulse 2s infinite;
     }
     
     @keyframes pulse {
-        0% {
-            transform: scale(1);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        50% {
-            transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        100% {
-            transform: scale(1);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
+        0% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+        100% { transform: scale(1); }
     }
     
     .result-win { 
@@ -208,7 +105,7 @@ def load_css():
         border-left: 5px solid #ef6c00;
     }
     
-    /* Tic Tac Toe styling */
+    /* Tic Tac Toe and Battleship styling */
     .ttt-cell {
         height: 110px;
         display: flex;
@@ -218,21 +115,12 @@ def load_css():
         border-radius: 10px;
         font-size: 2.8rem;
         font-weight: bold;
-        cursor: pointer;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        transition: all 0.2s;
         margin: 6px;
-    }
-    
-    .ttt-cell:hover {
-        background-color: #e9ecef;
-        transform: scale(1.03);
     }
     
     .ttt-x { color: #6e8efb; }
     .ttt-o { color: #f44336; }
     
-    /* Battleship styling */
     .ship-cell { 
         background: linear-gradient(to bottom, #bbdefb, #90caf9);
         border: 1px solid #64b5f6;
@@ -259,26 +147,29 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # FIXED SIDEBAR WITH INLINE BACKGROUND COLOR
+    # DIRECT SIDEBAR STYLING - much more simplified and direct
     with st.sidebar:
-        # Add a background color to the whole sidebar
+        # Force sidebar background color directly
         st.markdown("""
         <style>
-        [data-testid="stSidebar"] > div {
-            background-color: #f0f2f6;
+        section[data-testid="stSidebar"] {
+            background: linear-gradient(180deg, #6e8efb, #a777e3) !important;
+        }
+        section[data-testid="stSidebar"] .element-container {
+            color: white !important;
         }
         </style>
         """, unsafe_allow_html=True)
         
-        # Custom sidebar header
+        # Header with explicit colors
         st.markdown("""
-        <div class="sidebar-container">
-            <h2>Game Selection</h2>
-            <p>Choose your favorite game to play</p>
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h2 style="color: white !important; font-size: 1.8rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);">Game Selection</h2>
+            <p style="color: white !important; opacity: 0.9;">Choose your favorite game to play</p>
         </div>
         """, unsafe_allow_html=True)
         
-        # Create game selector
+        # Create game selector with explicit background
         games = [
             "Battleship",
             "Tic Tac Toe",
@@ -289,18 +180,37 @@ def main():
         if 'selected_game' not in st.session_state:
             st.session_state.selected_game = "Battleship"
         
-        # Display game options with explicit styling
+        # Style the radio container for visibility
         st.markdown("""
-        <div style="padding: 1rem 0; background-color: #f0f2f6; color: #333; border-radius: 10px;">
-            <h3 style="margin-left: 0.5rem; color: #333; font-size: 1rem;">Select a game:</h3>
-        </div>
+        <style>
+        .stRadio > div {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+            padding: 10px !important;
+            border-radius: 10px !important;
+        }
+        .stRadio label {
+            color: white !important;
+            font-weight: 500 !important;
+        }
+        div[role="radiogroup"] label {
+            color: white !important;
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            padding: 5px !important;
+            border-radius: 5px !important;
+            margin-bottom: 5px !important;
+        }
+        </style>
         """, unsafe_allow_html=True)
+        
+        # Simple title for game selection
+        st.markdown("<p style='color: white !important; font-weight: bold; margin-bottom: 10px;'>Select a game:</p>", unsafe_allow_html=True)
         
         # Radio button selection
         selected_game = st.radio(
             "",  # Empty label
             games,
-            index=games.index(st.session_state.selected_game)
+            index=games.index(st.session_state.selected_game),
+            label_visibility="collapsed"  # Hide the label completely
         )
         
         # Update the session state if selection changed
@@ -308,31 +218,28 @@ def main():
             st.session_state.selected_game = selected_game
             st.rerun()
         
-        st.markdown("<hr class='sidebar-separator'>", unsafe_allow_html=True)
+        # Separator
+        st.markdown("<hr style='margin: 20px 0; opacity: 0.2;'>", unsafe_allow_html=True)
         
-        # Show difficulty settings for Tic Tac Toe with better styling
+        # Show difficulty settings for Tic Tac Toe
         difficulty = "Easy"  # Default value
         if st.session_state.selected_game == "Tic Tac Toe":
-            st.markdown("""
-            <div style="background-color: #f0f2f6; padding: 1rem; border-radius: 10px; margin-bottom: 1rem;">
-                <h3 style="margin-bottom: 0.5rem; color: #333; font-size: 1rem;">Difficulty level:</h3>
-            </div>
-            """, unsafe_allow_html=True)
-            difficulty = st.radio("", ["Easy", "Hard"])
+            st.markdown("<p style='color: white !important; font-weight: bold; margin-bottom: 10px;'>Difficulty level:</p>", unsafe_allow_html=True)
+            difficulty = st.radio("", ["Easy", "Hard"], label_visibility="collapsed")
         
-        # GitHub link with explicit styling
+        # GitHub link with better visibility
         st.markdown("""
-        <a href="https://github.com/Jotis86/Games-Project" target="_blank" class="github-link">
-            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
-            <span style="color: #333;">View on GitHub</span>
+        <a href="https://github.com/Jotis86/Games-Project" target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 10px; background: rgba(255,255,255,0.9); border-radius: 10px; margin: 20px 0; text-decoration: none; color: #333; font-weight: 500;">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" style="width: 24px; margin-right: 8px;">
+            View on GitHub
         </a>
         """, unsafe_allow_html=True)
         
-        # Footer with explicit text color
+        # Footer with guaranteed visibility
         st.markdown("""
-        <div class="sidebar-footer">
-            <p style="color: white !important;">Made with ❤️ and Streamlit</p>
-            <p style="font-size: 0.8rem; opacity: 0.7; color: white !important;">© 2023 Arcade Games Hub</p>
+        <div style="margin-top: 30px; padding: 15px; text-align: center; background: rgba(0,0,0,0.2); border-radius: 10px;">
+            <p style="color: white !important; margin: 5px 0;">Made with ❤️ and Streamlit</p>
+            <p style="color: white !important; font-size: 0.8rem; opacity: 0.7;">© 2023 Arcade Games Hub</p>
         </div>
         """, unsafe_allow_html=True)
     
