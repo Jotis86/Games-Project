@@ -273,7 +273,7 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # COMPLETELY REDESIGNED SIDEBAR
+    # SIMPLIFIED SIDEBAR THAT SHOULD WORK ON ALL STREAMLIT VERSIONS
     with st.sidebar:
         # Custom sidebar header
         st.markdown("""
@@ -294,23 +294,22 @@ def main():
         if 'selected_game' not in st.session_state:
             st.session_state.selected_game = "Battleship"
         
-        # Display game options with better styling
+        # Display game options (simplified approach)
         st.markdown("<div style='padding: 1rem 0;'>", unsafe_allow_html=True)
-        for game_name in games:
-            is_selected = st.session_state.selected_game == game_name
-            active_class = "active" if is_selected else ""
+        
+        # Simple radio button selection instead of custom buttons
+        selected_game = st.radio(
+            "Select a game:",
+            games,
+            index=games.index(st.session_state.selected_game),
+            label_visibility="collapsed"
+        )
+        
+        # Update the session state if selection changed
+        if selected_game != st.session_state.selected_game:
+            st.session_state.selected_game = selected_game
+            st.rerun()
             
-            st.markdown(f"""
-            <div class="game-option {active_class}" id="btn_{game_name}" 
-                 onclick="document.getElementById('btn_{game_name}_hidden').click()">
-                {game_name}
-            </div>
-            """, unsafe_allow_html=True)
-            
-            # Hidden button to handle the click
-            if st.button(game_name, key=f"btn_{game_name}_hidden", label_visibility="collapsed"):
-                st.session_state.selected_game = game_name
-                st.rerun()
         st.markdown("</div>", unsafe_allow_html=True)
         
         st.markdown("<hr class='sidebar-separator'>", unsafe_allow_html=True)
