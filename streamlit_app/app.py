@@ -28,25 +28,6 @@ st.set_page_config(
     }
 )
 
-# Apply theme colors immediately after page config
-st.markdown("""
-<style>
-    /* Theme customization */
-    :root {
-        --primary-color: #6e8efb;  /* Primary accent color */
-        --background-color: #f5f7f9;  /* Light page background */
-        --secondary-background-color: #e8eef4;  /* Sidebar background */
-        --text-color: #333333;  /* Main text color */
-        --font: "Segoe UI", Roboto, sans-serif;  /* Custom font stack */
-    }
-    /* Force the background color */
-    .stApp {
-        background-color: var(--background-color);
-    }
-</style>
-""", unsafe_allow_html=True)
-
-
 
 
 
