@@ -359,7 +359,7 @@ def play_battleship():
             place_ships_randomly(st.session_state.computer_hidden_board)
             st.session_state.game_started = True
             message_container.success("Ships placed! The battle begins!")
-            st.experimental_rerun()
+            st.rerun()
     
     # Phase 2: Battle phase
     elif st.session_state.game_started:
@@ -375,7 +375,7 @@ def play_battleship():
             st.session_state.game_started = False
             if st.button("Play Again", key="battleship_play_again2"):
                 reset_game_battleship()
-                st.experimental_rerun()
+                st.rerun()
         else:
             status_container.info("Click on enemy waters to launch an attack!")
 
@@ -521,7 +521,7 @@ def play_tic_tac_toe(difficulty):
         
         if st.button("Play Again", key="ttt_play_again"):
             reset_tic_tac_toe()
-            st.experimental_rerun()
+            st.rerun()
 
 def display_tic_tac_toe_board(board):
     """Display interactive Tic Tac Toe board"""
