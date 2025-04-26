@@ -5,8 +5,50 @@ import base64
 from PIL import Image, ImageDraw, ImageFont
 import io
 
-# Set page configuration
-st.set_page_config(page_title="Arcade Games Hub", layout="wide", initial_sidebar_state="expanded")
+# Enhanced page configuration
+st.set_page_config(
+    page_title="🎮 Arcade Games Hub",
+    page_icon="🎮",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://github.com/Jotis86/Games-Project/issues',
+        'Report a bug': 'https://github.com/Jotis86/Games-Project/issues/new',
+        'About': """
+        # Arcade Games Hub
+        
+        A collection of classic games built with Streamlit.
+        
+        * Battleship
+        * Tic Tac Toe
+        * Rock Paper Scissors Lizard Spock
+        
+        © 2025 Arcade Games Hub | Made with ❤️ and Streamlit
+        """
+    }
+)
+
+# Apply theme colors immediately after page config
+st.markdown("""
+<style>
+    /* Theme customization */
+    :root {
+        --primary-color: #6e8efb;  /* Primary accent color */
+        --background-color: #f5f7f9;  /* Light page background */
+        --secondary-background-color: #e8eef4;  /* Sidebar background */
+        --text-color: #333333;  /* Main text color */
+        --font: "Segoe UI", Roboto, sans-serif;  /* Custom font stack */
+    }
+    /* Force the background color */
+    .stApp {
+        background-color: var(--background-color);
+    }
+</style>
+""", unsafe_allow_html=True)
+
+
+
+
 
 # Enhanced CSS for better styling
 def load_css():
