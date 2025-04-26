@@ -8,7 +8,7 @@ import io
 # Set page configuration
 st.set_page_config(page_title="Arcade Games Hub", layout="wide", initial_sidebar_state="expanded")
 
-# Update the CSS with this completely new sidebar design
+# Enhanced CSS for better styling
 def load_css():
     st.markdown("""
     <style>
@@ -74,6 +74,7 @@ def load_css():
         text-align: center;
         color: #555;
         border-left: 4px solid transparent;
+        cursor: pointer;
     }
     
     .game-option:hover {
@@ -261,7 +262,6 @@ def load_css():
     </style>
     """, unsafe_allow_html=True)
 
-# And replace your sidebar code with this completely redesigned version:
 def main():
     load_css()
     
@@ -379,7 +379,7 @@ def display_rules(game_type):
             - First to score 3 points wins
             """)
 
-# Replace the score display in the Rock Paper Scissors function
+# ROCK PAPER SCISSORS LIZARD SPOCK IMPLEMENTATION
 def play_rpsls():
     st.markdown('<div class="game-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="game-title">Rock Paper Scissors Lizard Spock ✊✋✌️🦎🖖</h2>', unsafe_allow_html=True)
@@ -473,9 +473,9 @@ def play_rpsls():
     # Game over state
     if st.session_state.game_over:
         if st.session_state.player_score > st.session_state.computer_score:
-            st.success("🎉 Congratulations! You won the game! 🎉")
+            st.markdown('<div class="game-result result-win">🎉 Congratulations! You won the game! 🎉</div>', unsafe_allow_html=True)
         else:
-            st.error("💔 Game over! The computer won! 💔")
+            st.markdown('<div class="game-result result-lose">💔 Game over! The computer won! 💔</div>', unsafe_allow_html=True)
         
         if st.button("Play Again"):
             reset_rpsls()
