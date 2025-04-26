@@ -1,6 +1,9 @@
 import streamlit as st
 import random
 import time
+import base64
+from PIL import Image, ImageDraw, ImageFont
+import io
 
 # Set page configuration
 st.set_page_config(page_title="Arcade Games Hub", layout="wide", initial_sidebar_state="expanded")
@@ -31,14 +34,30 @@ def load_css():
         opacity: 0.9;
     }
     
-    .sidebar-header {
-        background: linear-gradient(135deg, #a777e3, #6e8efb);
-        padding: 1rem;
+    .sidebar-banner {
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
+        padding: 1.5rem;
         border-radius: 10px;
         margin-bottom: 1.5rem;
         text-align: center;
         color: white;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    
+    .sidebar-banner h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+    
+    .sidebar-footer {
+        background: linear-gradient(135deg, #a777e3, #6e8efb);
+        padding: 1rem;
+        border-radius: 10px;
+        margin-top: 2rem;
+        text-align: center;
+        color: white;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
     }
     
     .game-container {
@@ -120,6 +139,7 @@ def load_css():
         cursor: pointer;
         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         transition: all 0.2s;
+        margin: 6px;
     }
     
     .ttt-cell:hover {
@@ -157,6 +177,40 @@ def load_css():
         margin: 0 auto;
     }
     
+    /* Game selector buttons */
+    .game-selector {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 1rem 0;
+    }
+    
+    .game-option {
+        padding: 12px;
+        border-radius: 10px;
+        background-color: #f0f2f6;
+        border: 1px solid #dee2e6;
+        text-align: center;
+        transition: all 0.3s;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .game-option:hover {
+        background-color: #e2e6ff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .game-option.active {
+        background: linear-gradient(to right, #6e8efb, #a777e3);
+        color: white;
+        border: none;
+        box-shadow: 0 4px 10px rgba(110, 142, 251, 0.3);
+    }
+    
     .ship-cell { 
         background: linear-gradient(to bottom, #bbdefb, #90caf9);
         border: 1px solid #64b5f6;
@@ -169,38 +223,63 @@ def load_css():
         background: linear-gradient(to bottom, #e0e0e0, #bdbdbd);
         border: 1px solid #9e9e9e;
     }
-    
-    /* Game selection button */
-    .game-select-btn {
-        padding: 0.8rem;
-        border-radius: 10px;
-        margin: 0.5rem 0;
-        background-color: #f8f9fa;
-        border: 1px solid #dee2e6;
-        transition: all 0.3s;
-        text-align: center;
-    }
-    
-    .game-select-btn:hover {
-        background-color: #e9ecef;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    
-    .game-select-active {
-        background-color: #6e8efb;
-        color: white;
-    }
     </style>
     """, unsafe_allow_html=True)
+
+# Function to create a banner image
+def create_banner_image():
+    # Create a new image with a gradient background
+    width, height = 600, 200
+    img = Image.new('RGB', (width, height), color='white')
+    draw = ImageDraw.Draw(img)
+    
+    # Draw gradient background (simplified)
+    for y in range(height):
+        r = int(110 + (130 - 110) * y / height)
+        g = int(142 + (119 - 142) * y / height)
+        b = int(251 + (227 - 251) * y / height)
+        draw.line([(0, y), (width, y)], fill=(r, g, b))
+    
+    # Add arcade-style text
+    try:
+        # Use default font if custom font not available
+        font_size = 50
+        text = "ARCADE GAMES HUB"
+        text_width = width * 0.8  # estimate text width
+        text_position = ((width - text_width) // 2, height // 3)
+        
+        # Draw text with shadow for 3D effect
+        shadow_offset = 3
+        draw.text((text_position[0] + shadow_offset, text_position[1] + shadow_offset), 
+                  text, fill=(40, 40, 40, 180))
+        draw.text(text_position, text, fill=(255, 255, 255))
+        
+        # Add some game icons
+        icons = "🎮 🎯 🎲 🎪"
+        draw.text((width // 3, height * 2 // 3), icons, fill=(255, 255, 255))
+        
+    except Exception as e:
+        # Fallback if font issues
+        print(f"Font error: {e}")
+    
+    # Convert to base64 for displaying in HTML
+    buffered = io.BytesIO()
+    img.save(buffered, format="PNG")
+    img_str = base64.b64encode(buffered.getvalue()).decode()
+    
+    return f"data:image/png;base64,{img_str}"
 
 def main():
     load_css()
     
-    # Enhanced header
-    st.markdown("""
+    # Generate banner image
+    banner_img = create_banner_image()
+    
+    # Enhanced header with image banner
+    st.markdown(f"""
     <div class="header-container">
-        <h1>🎮 Arcade Games Hub</h1>
+        <img src="{banner_img}" style="width: 100%; max-width: 600px; margin-bottom: 1rem;">
+        <h1>Arcade Games Hub</h1>
         <p>Classic games with a modern twist - Fun for everyone!</p>
     </div>
     """, unsafe_allow_html=True)
@@ -208,17 +287,43 @@ def main():
     # Enhanced sidebar with better styling
     with st.sidebar:
         st.markdown("""
-        <div class="sidebar-header">
-            <h2>Game Selection</h2>
+        <div class="sidebar-banner">
+            <h2>🎮 Game Selection</h2>
+            <p>Choose your favorite game to play</p>
         </div>
         """, unsafe_allow_html=True)
         
-        game = st.selectbox("Choose a game:", 
-                         ["Battleship", "Tic Tac Toe", "Rock Paper Scissors Lizard Spock"])
+        # Create custom game selector
+        games = {
+            "Battleship": "🚢",
+            "Tic Tac Toe": "❌⭕",
+            "Rock Paper Scissors Lizard Spock": "✊✋✌️🦎🖖"
+        }
+        
+        # Store selected game in session state
+        if 'selected_game' not in st.session_state:
+            st.session_state.selected_game = "Battleship"
+        
+        # Display game options
+        st.markdown('<div class="game-selector">', unsafe_allow_html=True)
+        for game_name, icon in games.items():
+            is_active = st.session_state.selected_game == game_name
+            active_class = "active" if is_active else ""
+            
+            if st.button(
+                f"{icon} {game_name}", 
+                key=f"btn_{game_name}",
+                use_container_width=True,
+            ):
+                st.session_state.selected_game = game_name
+                st.rerun()
+        
+        st.markdown('</div>', unsafe_allow_html=True)
         
         st.markdown("---")
         
-        if game == "Tic Tac Toe":
+        # Show difficulty settings for Tic Tac Toe
+        if st.session_state.selected_game == "Tic Tac Toe":
             difficulty = st.radio("Difficulty:", ["Easy", "Hard"])
         
         # GitHub link with better styling
@@ -230,12 +335,22 @@ def main():
             </a>
         </div>
         """, unsafe_allow_html=True)
+        
+        # Add a nice footer
+        st.markdown("""
+        <div class="sidebar-footer">
+            <p>Made with ❤️ and Streamlit</p>
+            <p style="font-size: 0.8rem; opacity: 0.7;">© 2023 Arcade Games Hub</p>
+        </div>
+        """, unsafe_allow_html=True)
     
-    # Game section
-    if game == "Battleship":
+    # Game section based on selection
+    selected_game = st.session_state.selected_game
+    
+    if selected_game == "Battleship":
         display_rules("battleship")
         play_battleship()
-    elif game == "Tic Tac Toe":
+    elif selected_game == "Tic Tac Toe":
         display_rules("tictactoe")
         play_tic_tac_toe(difficulty)
     else:  # Rock Paper Scissors Lizard Spock
@@ -456,7 +571,8 @@ def play_tic_tac_toe(difficulty):
         </div>
         """, unsafe_allow_html=True)
     
-    # Create the game board
+    # Create the game board with better spacing
+    st.markdown('<div style="max-width: 450px; margin: 0 auto; padding: 10px;">', unsafe_allow_html=True)
     for i in range(3):
         cols = st.columns(3)
         for j in range(3):
@@ -471,6 +587,7 @@ def play_tic_tac_toe(difficulty):
                     symbol_class = "ttt-x" if board[index] == "X" else "ttt-o" if board[index] == "O" else ""
                     symbol = "❌" if board[index] == "X" else "⭕" if board[index] == "O" else " "
                     st.markdown(f'<div class="ttt-cell {symbol_class}">{symbol}</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
     
     # Game over state
     if st.session_state.ttt_game_over:
@@ -620,18 +737,23 @@ def play_battleship():
                                clickable=st.session_state.bs_game_started, 
                                show_ships=False)
     
-    # Game over states
-    if st.session_state.bs_ships_placed and not st.session_state.bs_game_started:
-        st.success("🎉 VICTORY! You sank all enemy ships! 🎉") if check_battleship_winner(st.session_state.bs_computer_hidden_board) else st.error("💔 DEFEAT! Your fleet has been destroyed! 💔")
-        
-        # Create a unique key for the Play Again button
-        if st.button("Play Again", key="bs_play_again_final"):
-            # Complete reset of all battleship-related session state
-            for key in list(st.session_state.keys()):
-                if key.startswith('bs_'):
-                    del st.session_state[key]
-            reset_battleship()
-            st.rerun()
+    # Game over states - Fixed the conditional display
+    if st.session_state.bs_ships_placed:
+        if check_battleship_winner(st.session_state.bs_computer_hidden_board):
+            st.success("🎉 VICTORY! You sank all enemy ships! 🎉")
+            st.session_state.bs_game_started = False
+            
+            if st.button("Play Again", key="bs_play_again1"):
+                reset_battleship()
+                st.rerun()
+                
+        elif check_battleship_winner(st.session_state.bs_player_board):
+            st.error("💔 DEFEAT! Your fleet has been destroyed! 💔")
+            st.session_state.bs_game_started = False
+            
+            if st.button("Play Again", key="bs_play_again2"):
+                reset_battleship()
+                st.rerun()
     
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -745,7 +867,7 @@ def reset_battleship():
     st.session_state.bs_computer_hidden_board = [[' ' for _ in range(5)] for _ in range(5)]
     st.session_state.bs_ships_placed = False
     st.session_state.bs_player_ships = 0
-    st.session_state.bs_game_started = False
+    st.session_state.bs_game_started = True  # This is set initially to avoid errors
     st.session_state.bs_player_moves = set()
     st.session_state.bs_computer_moves = set()
 
