@@ -11,45 +11,177 @@ st.set_page_config(page_title="Arcade Games Hub", layout="wide", initial_sidebar
 def local_css():
     st.markdown("""
     <style>
-        .main-header {
-            font-size: 3rem !important;
-            color: #1E88E5;
+        /* Main banner styling */
+        .main-banner {
+            background: linear-gradient(to right, #1a237e, #4a148c);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             text-align: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            margin-bottom: 1rem;
         }
+        
+        .main-banner h1 {
+            font-size: 3.5rem !important;
+            font-weight: 800;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin: 0;
+            letter-spacing: 1px;
+        }
+        
+        .main-banner p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        
+        /* Sidebar styling */
+        .sidebar-banner {
+            background: linear-gradient(to bottom, #303f9f, #7b1fa2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .sidebar-banner h2 {
+            color: white;
+            font-size: 1.8rem;
+            margin: 0;
+            font-weight: 700;
+        }
+        
+        /* Game cards styling */
+        .game-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+        
         .game-header {
             color: #1976D2;
             text-align: center;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #1976D2;
-        }
-        .game-board {
-            margin: 2rem auto;
-            max-width: 600px;
-        }
-        .cell-btn {
-            width: 100%;
-            height: 100px;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background: #f0f7ff;
+            font-weight: 700;
             font-size: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        /* Score display styling */
+        .score-display {
+            padding: 15px;
+            background: linear-gradient(to right, #2196F3, #4CAF50);
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .score-display h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .score-display h2 {
+            color: white;
+            margin: 5px 0 0 0;
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        /* Tic Tac Toe board styling */
+        .ttt-board {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .ttt-cell {
+            height: 100px;
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
             display: flex;
             justify-content: center;
             align-items: center;
+            font-size: 3rem;
+            margin: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
         }
-        .score-display {
-            padding: 1rem;
-            background-color: #f0f2f6;
-            border-radius: 10px;
-            margin: 1rem 0;
-            text-align: center;
+        
+        .ttt-cell:hover {
+            background: #f0f2f6;
+            transform: scale(1.03);
         }
+        
+        .ttt-x {
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        .ttt-o {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        /* GitHub link button */
+        .github-button {
+            background: #333;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            transition: all 0.2s ease;
+        }
+        
+        .github-button:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+        
+        .github-button img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* Responsive cell sizes for smaller screens */
+        @media (max-width: 768px) {
+            .ttt-cell {
+                height: 80px;
+            }
+        }
+        
+        /* Other existing styles */
         .result-text {
             font-size: 1.5rem;
             font-weight: bold;
             text-align: center;
             margin: 1rem 0;
         }
+        
         .win-text {
             color: #4CAF50;
             font-size: 1.75rem;
@@ -58,6 +190,7 @@ def local_css():
             margin: 1rem 0;
             animation: pulse 1.5s infinite;
         }
+        
         .lose-text {
             color: #F44336;
             font-size: 1.75rem;
@@ -65,6 +198,7 @@ def local_css():
             text-align: center;
             margin: 1rem 0;
         }
+        
         .draw-text {
             color: #FF9800;
             font-size: 1.75rem;
@@ -72,31 +206,97 @@ def local_css():
             text-align: center;
             margin: 1rem 0;
         }
+        
         .rules-container {
             background-color: #f0f2f6;
             padding: 1rem;
             border-radius: 10px;
             margin-bottom: 1rem;
         }
+        
         .ship-cell {
-            background-color: #2196F3;
+            background-color: #2196F3 !important;
             color: white;
             border-radius: 5px;
         }
+        
         .hit-cell {
-            background-color: #F44336;
+            background-color: #F44336 !important;
             color: white;
             border-radius: 5px;
         }
+        
         .miss-cell {
-            background-color: #78909C;
+            background-color: #78909C !important;
             color: white;
             border-radius: 5px;
         }
+        
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
+        }
+        
+        /* Battleship grid styling */
+        .bs-grid {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .bs-cell {
+            height: 50px;
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            margin: 3px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+        
+        .bs-cell:hover {
+            background: #e9ecef;
+            transform: scale(1.05);
+        }
+        
+        /* RPSLS choice buttons */
+        .choice-btn {
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .choice-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            border-color: #007bff;
+        }
+        
+        .choice-emoji {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        
+        .choice-name {
+            font-size: 0.8rem;
+            color: #495057;
         }
     </style>
     """, unsafe_allow_html=True)
@@ -104,17 +304,38 @@ def local_css():
 def main():
     local_css()
     
-    # App header with animation
-    st.markdown('<h1 class="main-header">🎮 Arcade Games Hub</h1>', unsafe_allow_html=True)
+    # App header with custom banner
+    st.markdown("""
+    <div class="main-banner">
+        <h1>🎮 Arcade Games Hub</h1>
+        <p>Classic games reimagined for your entertainment!</p>
+    </div>
+    """, unsafe_allow_html=True)
     
-    # Sidebar navigation
-    st.sidebar.image("https://cdn-icons-png.flaticon.com/512/2257/2257820.png", width=100)
-    st.sidebar.title("Game Selection")
-    
-    game = st.sidebar.selectbox(
-        "Choose a game to play", 
-        ["Battleship", "Tic Tac Toe", "Rock Paper Scissors Lizard Spock"]
-    )
+    # Customize sidebar
+    with st.sidebar:
+        st.markdown("""
+        <div class="sidebar-banner">
+            <h2>🎲 Game Selection</h2>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Add a nice game selection image
+        st.image("https://cdn-icons-png.flaticon.com/512/2257/2257820.png", width=120)
+        
+        # Game selection
+        game = st.selectbox(
+            "Choose a game to play", 
+            ["Battleship", "Tic Tac Toe", "Rock Paper Scissors Lizard Spock"]
+        )
+        
+        # GitHub Link
+        st.markdown("""
+        <a href="https://github.com/yourusername/games-project" class="github-button" target="_blank">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
+            View on GitHub
+        </a>
+        """, unsafe_allow_html=True)
     
     # Game-specific content
     if game == "Battleship":
@@ -133,7 +354,7 @@ def display_rules(game_type):
     with st.sidebar.expander("Game Rules", expanded=False):
         if game_type == "battleship":
             st.markdown("""
-            ### Battleship Rules
+            ### 🚢 Battleship Rules
             1. You'll play on a 5x5 grid against the computer
             2. Place your 3 ships on the grid
             3. Take turns guessing locations of opponent's ships
@@ -141,7 +362,7 @@ def display_rules(game_type):
             """)
         elif game_type == "tictactoe":
             st.markdown("""
-            ### Tic Tac Toe Rules
+            ### ⭕❌ Tic Tac Toe Rules
             1. Play on a 3x3 grid (you're X, computer is O)
             2. Take turns placing your symbol
             3. Get three in a row (horizontally, vertically, or diagonally) to win
@@ -149,7 +370,7 @@ def display_rules(game_type):
             """)
         else:  # RPSLS
             st.markdown("""
-            ### Rock Paper Scissors Lizard Spock Rules
+            ### ✊✋✌️🦎🖖 Rock Paper Scissors Lizard Spock Rules
             - Rock crushes Scissors and Lizard
             - Paper covers Rock and disproves Spock
             - Scissors cuts Paper and decapitates Lizard
@@ -161,117 +382,151 @@ def display_rules(game_type):
 
 # ROCK PAPER SCISSORS LIZARD SPOCK IMPLEMENTATION
 def play_rpsls():
-    st.markdown('<h2 class="game-header">Rock Paper Scissors Lizard Spock ✊✋✌️🦎🖖</h2>', unsafe_allow_html=True)
-    
-    # Initialize session state
-    if 'player_score' not in st.session_state:
-        st.session_state.player_score = 0
-    if 'computer_score' not in st.session_state:
-        st.session_state.computer_score = 0
-    if 'game_over' not in st.session_state:
-        st.session_state.game_over = False
-    if 'game_history' not in st.session_state:
-        st.session_state.game_history = []
-    
-    # Display scores in a visually appealing way
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown(f"""
-        <div class="score-display">
-            <h3>Your Score</h3>
-            <h2>{st.session_state.player_score}</h2>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col2:
-        st.markdown(f"""
-        <div class="score-display">
-            <h3>Computer Score</h3>
-            <h2>{st.session_state.computer_score}</h2>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    # Game elements
-    choices = {
-        "Rock": "✊", 
-        "Paper": "✋", 
-        "Scissors": "✌️", 
-        "Lizard": "🦎", 
-        "Spock": "🖖"
-    }
-    
-    # Display choices as buttons in a row
-    st.markdown("<h3 style='text-align: center;'>Make your choice:</h3>", unsafe_allow_html=True)
-    
-    # Create buttons for each choice
-    cols = st.columns(len(choices))
-    player_choice = None
-    
-    for idx, (choice, emoji) in enumerate(choices.items()):
-        if cols[idx].button(f"{emoji} {choice}", key=f"choice_{choice}", disabled=st.session_state.game_over):
-            player_choice = choice
-    
-    # Process game logic when a choice is made
-    if player_choice:
-        computer_choice = random.choice(list(choices.keys()))
+    with st.container():
+        st.markdown('<div class="game-card">', unsafe_allow_html=True)
+        st.markdown('<h2 class="game-header">Rock Paper Scissors Lizard Spock ✊✋✌️🦎🖖</h2>', unsafe_allow_html=True)
         
-        # Show the choices with animation
-        choice_display_col1, choice_display_col2 = st.columns(2)
+        # Initialize session state
+        if 'player_score' not in st.session_state:
+            st.session_state.player_score = 0
+        if 'computer_score' not in st.session_state:
+            st.session_state.computer_score = 0
+        if 'game_over' not in st.session_state:
+            st.session_state.game_over = False
+        if 'game_history' not in st.session_state:
+            st.session_state.game_history = []
         
-        with choice_display_col1:
+        # Display scores in a visually appealing way
+        col1, col2 = st.columns(2)
+        with col1:
             st.markdown(f"""
-            <div style='text-align: center;'>
-                <h4>Your choice</h4>
-                <div style='font-size: 4rem;'>{choices[player_choice]}</div>
-                <p>{player_choice}</p>
+            <div class="score-display">
+                <h3>Your Score</h3>
+                <h2>{st.session_state.player_score}</h2>
             </div>
             """, unsafe_allow_html=True)
         
-        with choice_display_col2:
+        with col2:
             st.markdown(f"""
-            <div style='text-align: center;'>
-                <h4>Computer's choice</h4>
-                <div style='font-size: 4rem;'>{choices[computer_choice]}</div>
-                <p>{computer_choice}</p>
+            <div class="score-display">
+                <h3>Computer Score</h3>
+                <h2>{st.session_state.computer_score}</h2>
             </div>
             """, unsafe_allow_html=True)
         
-        # Determine winner with visual feedback
-        result = determine_winner(player_choice, computer_choice)
+        # Game elements
+        choices = {
+            "Rock": "✊", 
+            "Paper": "✋", 
+            "Scissors": "✌️", 
+            "Lizard": "🦎", 
+            "Spock": "🖖"
+        }
         
-        if result == "You win!":
-            st.markdown(f"<div class='win-text'>{result}</div>", unsafe_allow_html=True)
-        elif result == "You lose!":
-            st.markdown(f"<div class='lose-text'>{result}</div>", unsafe_allow_html=True)
-        else:
-            st.markdown(f"<div class='draw-text'>{result}</div>", unsafe_allow_html=True)
+        # Display choices as buttons in a row
+        st.markdown("<h3 style='text-align: center; margin-top: 20px;'>Make your choice:</h3>", unsafe_allow_html=True)
         
-        # Update score and check for game over
-        update_score(result)
+        # Create buttons for each choice
+        cols = st.columns(len(choices))
+        player_choice = None
         
-        # Add to game history
-        st.session_state.game_history.append({
-            "player_choice": player_choice,
-            "computer_choice": computer_choice,
-            "result": result
-        })
-    
-    # Game history section
-    if st.session_state.game_history:
-        with st.expander("Game History", expanded=False):
-            for idx, round_data in enumerate(st.session_state.game_history):
-                st.write(f"Round {idx+1}: You chose {round_data['player_choice']}, "
-                         f"Computer chose {round_data['computer_choice']} - {round_data['result']}")
-    
-    # Game over state
-    if st.session_state.game_over:
-        if st.session_state.player_score > st.session_state.computer_score:
-            st.markdown("<div class='win-text'>🎉 CONGRATULATIONS! YOU WON THE MATCH! 🎉</div>", unsafe_allow_html=True)
-        else:
-            st.markdown("<div class='lose-text'>💔 You lost the match. Better luck next time! 💔</div>", unsafe_allow_html=True)
+        for idx, (choice, emoji) in enumerate(choices.items()):
+            with cols[idx]:
+                st.markdown(f"""
+                <div style="text-align: center;">
+                    <button class="choice-btn" onclick="document.getElementById('choice_{choice}').click()">
+                        <span class="choice-emoji">{emoji}</span>
+                        <span class="choice-name">{choice}</span>
+                    </button>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                # Hidden button to handle the click
+                if st.button(f"{choice}", key=f"choice_{choice}", 
+                           help=f"Choose {choice}", 
+                           on_click=None, 
+                           disabled=st.session_state.game_over):
+                    player_choice = choice
         
-        if st.button("Play Again", key="rpsls_play_again"):
-            reset_rpsls()
+        # Process game logic when a choice is made
+        if player_choice:
+            computer_choice = random.choice(list(choices.keys()))
+            
+            # Show the choices with animation
+            choice_display_col1, choice_display_col2 = st.columns(2)
+            
+            with choice_display_col1:
+                st.markdown(f"""
+                <div style='text-align: center; background: #f8f9fa; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);'>
+                    <h4 style="margin-bottom: 15px;">Your choice</h4>
+                    <div style='font-size: 4rem; margin-bottom: 10px;'>{choices[player_choice]}</div>
+                    <p style="font-weight: bold; color: #007bff;">{player_choice}</p>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            with choice_display_col2:
+                st.markdown(f"""
+                <div style='text-align: center; background: #f8f9fa; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);'>
+                    <h4 style="margin-bottom: 15px;">Computer's choice</h4>
+                    <div style='font-size: 4rem; margin-bottom: 10px;'>{choices[computer_choice]}</div>
+                    <p style="font-weight: bold; color: #dc3545;">{computer_choice}</p>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            # Determine winner with visual feedback
+            result = determine_winner(player_choice, computer_choice)
+            
+            if result == "You win!":
+                st.markdown(f"<div class='win-text'>{result}</div>", unsafe_allow_html=True)
+            elif result == "You lose!":
+                st.markdown(f"<div class='lose-text'>{result}</div>", unsafe_allow_html=True)
+            else:
+                st.markdown(f"<div class='draw-text'>{result}</div>", unsafe_allow_html=True)
+            
+            # Update score and check for game over
+            update_score(result)
+            
+            # Add to game history
+            st.session_state.game_history.append({
+                "player_choice": player_choice,
+                "computer_choice": computer_choice,
+                "result": result
+            })
+        
+        # Game history section
+        if st.session_state.game_history:
+            with st.expander("Game History", expanded=False):
+                for idx, round_data in enumerate(st.session_state.game_history):
+                    st.markdown(f"""
+                    <div style="padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 5px;">
+                        <b>Round {idx+1}:</b> You chose {round_data['player_choice']} {choices[round_data['player_choice']]}, 
+                        Computer chose {round_data['computer_choice']} {choices[round_data['computer_choice']]} - 
+                        <span style="color: {'#4CAF50' if round_data['result'] == 'You win!' else '#F44336' if round_data['result'] == 'You lose!' else '#FF9800'}">
+                            {round_data['result']}
+                        </span>
+                    </div>
+                    """, unsafe_allow_html=True)
+        
+        # Game over state
+        if st.session_state.game_over:
+            if st.session_state.player_score > st.session_state.computer_score:
+                st.markdown("""
+                <div class='win-text' style="padding: 20px; background: rgba(76, 175, 80, 0.1); border-radius: 10px;">
+                    🎉 CONGRATULATIONS! YOU WON THE MATCH! 🎉
+                </div>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown("""
+                <div class='lose-text' style="padding: 20px; background: rgba(244, 67, 54, 0.1); border-radius: 10px;">
+                    💔 You lost the match. Better luck next time! 💔
+                </div>
+                """, unsafe_allow_html=True)
+            
+            if st.button("Play Again", key="rpsls_play_again"):
+                reset_rpsls()
+                st.rerun()
+        
+        st.markdown('</div>', unsafe_allow_html=True)
 
 def determine_winner(player, computer):
     """Determine the winner of RPSLS"""
@@ -311,112 +566,166 @@ def reset_rpsls():
 
 # BATTLESHIP IMPLEMENTATION
 def play_battleship():
-    st.markdown('<h2 class="game-header">Battleship 🚢💥</h2>', unsafe_allow_html=True)
-    
-    # Initialize battleship session state
-    if 'player_board' not in st.session_state:
-        reset_game_battleship()
-    
-    # Display game status
-    if not st.session_state.ships_placed:
-        st.markdown("<h3>Phase 1: Place Your Ships</h3>", unsafe_allow_html=True)
-        st.write(f"Ships placed: {st.session_state.player_ships}/3")
-    else:
-        st.markdown("<h3>Phase 2: Battle!</h3>", unsafe_allow_html=True)
-    
-    # Create visual grid for player's board
-    st.markdown("<h4>Your Fleet:</h4>", unsafe_allow_html=True)
-    display_interactive_board(
-        "player", 
-        st.session_state.player_board, 
-        clickable=not st.session_state.ships_placed,
-        show_ships=True
-    )
-    
-    # Display computer's board only after ships are placed
-    if st.session_state.ships_placed:
-        st.markdown("<h4>Enemy Waters:</h4>", unsafe_allow_html=True)
-        display_interactive_board(
-            "computer", 
-            st.session_state.computer_board, 
-            clickable=st.session_state.game_started,
-            show_ships=False
-        )
-    
-    # Game status and messages
-    status_container = st.empty()
-    message_container = st.empty()
-    
-    # Phase 1: Ship placement
-    if not st.session_state.ships_placed:
-        message_container.info("Click on the grid to place your ships (3 required)")
+    with st.container():
+        st.markdown('<div class="game-card">', unsafe_allow_html=True)
+        st.markdown('<h2 class="game-header">Battleship 🚢💥</h2>', unsafe_allow_html=True)
         
-        # Option to place ships randomly
-        if st.button("Place Ships Randomly"):
-            place_ships_randomly(st.session_state.player_board)
-            st.session_state.player_ships = 3
-            st.session_state.ships_placed = True
-            place_ships_randomly(st.session_state.computer_hidden_board)
-            st.session_state.game_started = True
-            message_container.success("Ships placed! The battle begins!")
-            st.rerun()
-    
-    # Phase 2: Battle phase
-    elif st.session_state.game_started:
-        # Check for game over
-        if check_winner(st.session_state.computer_hidden_board):
-            message_container.markdown("<div class='win-text'>🎉 VICTORY! You sank all enemy ships! 🎉</div>", unsafe_allow_html=True)
-            st.session_state.game_started = False
-            if st.button("Play Again", key="battleship_play_again"):
-                reset_game_battleship()
-                st.experimental_rerun()
-        elif check_winner(st.session_state.player_board):
-            message_container.markdown("<div class='lose-text'>💔 DEFEAT! Your fleet has been destroyed! 💔</div>", unsafe_allow_html=True)
-            st.session_state.game_started = False
-            if st.button("Play Again", key="battleship_play_again2"):
-                reset_game_battleship()
-                st.rerun()
+        # Initialize battleship session state
+        if 'player_board' not in st.session_state:
+            reset_game_battleship()
+        
+        # Display game status
+        if not st.session_state.ships_placed:
+            st.markdown("""
+            <div style="text-align: center; padding: 10px; background: #e3f2fd; border-radius: 10px; margin-bottom: 20px;">
+                <h3 style="color: #1976D2;">Phase 1: Place Your Ships</h3>
+                <p>Click on the grid to place your ships - 3 ships required</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col2:
+                st.markdown(f"""
+                <div style="text-align: center; font-size: 1.5rem; font-weight: bold; 
+                    color: {'#4CAF50' if st.session_state.player_ships == 3 else '#1976D2'};">
+                    Ships placed: {st.session_state.player_ships}/3
+                </div>
+                """, unsafe_allow_html=True)
         else:
-            status_container.info("Click on enemy waters to launch an attack!")
-
-def display_interactive_board(board_type, board, clickable=True, show_ships=True):
-    """Display an interactive board with clickable cells"""
-    columns = st.columns(6)
-    # Column headers (A-E)
-    for i in range(5):
-        columns[i+1].markdown(f"<div style='text-align:center; font-weight:bold;'>{chr(65+i)}</div>", unsafe_allow_html=True)
-    
-    for row in range(5):
-        columns = st.columns(6)
-        # Row headers (1-5)
-        columns[0].markdown(f"<div style='text-align:center; font-weight:bold;'>{row+1}</div>", unsafe_allow_html=True)
+            st.markdown("""
+            <div style="text-align: center; padding: 10px; background: #fff3e0; border-radius: 10px; margin-bottom: 20px;">
+                <h3 style="color: #FF9800;">Phase 2: Battle!</h3>
+                <p>Click on enemy waters to launch your attack</p>
+            </div>
+            """, unsafe_allow_html=True)
         
+        # Create visual grid for player's board
+        st.markdown("<h4 style='text-align: center; margin-bottom: 15px;'>Your Fleet:</h4>", unsafe_allow_html=True)
+        
+        # Display the battleship board with a nicer UI
+        display_battleship_board(
+            "player", 
+            st.session_state.player_board, 
+            clickable=not st.session_state.ships_placed,
+            show_ships=True
+        )
+        
+        # Display computer's board only after ships are placed
+        if st.session_state.ships_placed:
+            st.markdown("<h4 style='text-align: center; margin: 30px 0 15px 0;'>Enemy Waters:</h4>", unsafe_allow_html=True)
+            display_battleship_board(
+                "computer", 
+                st.session_state.computer_board, 
+                clickable=st.session_state.game_started,
+                show_ships=False
+            )
+        
+        # Game status and messages
+        status_container = st.empty()
+        message_container = st.empty()
+        
+        # Phase 1: Ship placement
+        if not st.session_state.ships_placed:
+            # Option to place ships randomly
+            if st.button("Place Ships Randomly", key="random_ships"):
+                place_ships_randomly(st.session_state.player_board)
+                st.session_state.player_ships = 3
+                st.session_state.ships_placed = True
+                place_ships_randomly(st.session_state.computer_hidden_board)
+                st.session_state.game_started = True
+                message_container.success("Ships placed! The battle begins!")
+                st.rerun()
+        
+        # Phase 2: Battle phase
+        elif st.session_state.game_started:
+            # Check for game over
+            if check_winner(st.session_state.computer_hidden_board):
+                message_container.markdown("""
+                <div class='win-text' style='padding: 20px; background: rgba(76, 175, 80, 0.1); border-radius: 10px;'>
+                    🎉 VICTORY! You sank all enemy ships! 🎉
+                </div>
+                """, unsafe_allow_html=True)
+                st.session_state.game_started = False
+                if st.button("Play Again", key="battleship_play_again"):
+                    reset_game_battleship()
+                    st.rerun()
+            elif check_winner(st.session_state.player_board):
+                message_container.markdown("""
+                <div class='lose-text' style='padding: 20px; background: rgba(244, 67, 54, 0.1); border-radius: 10px;'>
+                    💔 DEFEAT! Your fleet has been destroyed! 💔
+                </div>
+                """, unsafe_allow_html=True)
+                st.session_state.game_started = False
+                if st.button("Play Again", key="battleship_play_again2"):
+                    reset_game_battleship()
+                    st.rerun()
+            else:
+                status_container.info("Click on enemy waters to launch an attack!")
+        
+        st.markdown('</div>', unsafe_allow_html=True)
+
+def display_battleship_board(board_type, board, clickable=True, show_ships=True):
+    """Display a more visually appealing battleship board"""
+    # Create a CSS grid for the battleship board
+    st.markdown("""
+    <div class="bs-grid">
+        <div style="display: grid; grid-template-columns: 30px repeat(5, 1fr); gap: 5px; margin-bottom: 10px;">
+            <div></div>
+            <div style="text-align: center; font-weight: bold;">A</div>
+            <div style="text-align: center; font-weight: bold;">B</div>
+            <div style="text-align: center; font-weight: bold;">C</div>
+            <div style="text-align: center; font-weight: bold;">D</div>
+            <div style="text-align: center; font-weight: bold;">E</div>
+    """, unsafe_allow_html=True)
+    
+    # Create grid rows
+    for row in range(5):
+        st.markdown(f"""
+        <div style="display: grid; grid-template-columns: 30px repeat(5, 1fr); gap: 5px; margin-bottom: 5px;">
+            <div style="display: flex; justify-content: center; align-items: center; font-weight: bold;">{row+1}</div>
+        """, unsafe_allow_html=True)
+        
+        # Create cells for this row
         for col in range(5):
             cell_value = board[row][col]
-            cell_style = ""
+            cell_class = ""
+            cell_content = ""
             
-            # Apply appropriate styling based on cell content
+            # Style based on cell content
             if cell_value == '🚢' and show_ships:
-                cell_style = "ship-cell"
+                cell_class = "ship-cell"
+                cell_content = "🚢"
             elif cell_value == '💥':
-                cell_style = "hit-cell"
+                cell_class = "hit-cell"
+                cell_content = "💥"
             elif cell_value == '❌':
-                cell_style = "miss-cell"
+                cell_class = "miss-cell"
+                cell_content = "❌"
             
-            # Create clickable buttons for empty cells if the board is clickable
+            # Create the cell
+            btn_id = f"{board_type}_cell_{row}_{col}"
+            
             if clickable and (cell_value == ' ' or (board_type == "computer" and cell_value != '💥' and cell_value != '❌')):
-                if columns[col+1].button(" ", key=f"{board_type}_{row}_{col}"):
-                    handle_board_click(board_type, row, col)
+                st.markdown(f"""
+                <div class="bs-cell" onclick="document.getElementById('{btn_id}').click()"></div>
+                """, unsafe_allow_html=True)
+                
+                # Hidden button to handle click
+                if st.button("", key=btn_id, help=f"Cell {chr(65+col)}{row+1}", on_click=None):
+                    handle_battleship_click(board_type, row, col)
+                    st.rerun()
             else:
-                # Display non-clickable cells with appropriate styling
-                columns[col+1].markdown(
-                    f"<div style='height:40px; display:flex; justify-content:center; align-items:center; "
-                    f"border:1px solid #ddd; border-radius:4px;' class='{cell_style}'>{cell_value if cell_value != ' ' else ''}</div>",
-                    unsafe_allow_html=True
-                )
+                st.markdown(f"""
+                <div class="bs-cell {cell_class}">{cell_content}</div>
+                """, unsafe_allow_html=True)
+        
+        st.markdown("</div>", unsafe_allow_html=True)
+    
+    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 
-def handle_board_click(board_type, row, col):
-    """Handle clicks on the game boards"""
+def handle_battleship_click(board_type, row, col):
+    """Handle clicks on the battleship board"""
     if board_type == "player" and not st.session_state.ships_placed:
         # Place ship on player's board
         if st.session_state.player_board[row][col] == ' ':
@@ -438,8 +747,10 @@ def handle_board_click(board_type, row, col):
             if st.session_state.computer_hidden_board[row][col] == '🚢':
                 st.session_state.computer_board[row][col] = '💥'
                 st.session_state.computer_hidden_board[row][col] = '💥'
+                st.session_state.last_result = "hit"
             else:
                 st.session_state.computer_board[row][col] = '❌'
+                st.session_state.last_result = "miss"
             
             # Computer's turn
             if not check_winner(st.session_state.computer_hidden_board):
@@ -486,79 +797,101 @@ def reset_game_battleship():
     st.session_state.game_started = False
     st.session_state.player_moves = set()
     st.session_state.computer_moves = set()
+    st.session_state.last_result = None
 
 # TIC TAC TOE IMPLEMENTATION
 def play_tic_tac_toe(difficulty):
-    st.markdown('<h2 class="game-header">Tic Tac Toe ❌⭕</h2>', unsafe_allow_html=True)
-    
-    # Initialize session state
-    if 'tic_tac_toe_board' not in st.session_state:
-        reset_tic_tac_toe()
-    
-    # Get current game state
-    board = st.session_state.tic_tac_toe_board
-    current_player = st.session_state.tic_tac_toe_current_player
-    
-    # Display current player's turn
-    if not st.session_state.tic_tac_toe_game_over:
-        st.markdown(f"""
-        <div style='text-align:center; margin-bottom:1rem;'>
-            <h3>Current Player: {current_player}</h3>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    # Display the game board with interactive buttons
-    display_tic_tac_toe_board(board)
-    
-    # Game over state
-    if st.session_state.tic_tac_toe_game_over:
-        if st.session_state.tic_tac_toe_winner == "Draw":
-            st.markdown("<div class='draw-text'>It's a draw!</div>", unsafe_allow_html=True)
-        elif st.session_state.tic_tac_toe_winner == "X":
-            st.markdown("<div class='win-text'>🎉 You win! 🎉</div>", unsafe_allow_html=True)
-        else:
-            st.markdown("<div class='lose-text'>💔 Computer wins! 💔</div>", unsafe_allow_html=True)
+    with st.container():
+        st.markdown('<div class="game-card">', unsafe_allow_html=True)
+        st.markdown('<h2 class="game-header">Tic Tac Toe ❌⭕</h2>', unsafe_allow_html=True)
         
-        if st.button("Play Again", key="ttt_play_again"):
+        # Initialize session state
+        if 'tic_tac_toe_board' not in st.session_state:
             reset_tic_tac_toe()
-            st.rerun()
+            st.session_state.tic_tac_toe_difficulty = difficulty
+        
+        # Get current game state
+        board = st.session_state.tic_tac_toe_board
+        current_player = st.session_state.tic_tac_toe_current_player
+        
+        # Display current player's turn
+        if not st.session_state.tic_tac_toe_game_over:
+            player_color = "#007bff" if current_player == "X" else "#dc3545"
+            player_symbol = "❌" if current_player == "X" else "⭕"
+            
+            st.markdown(f"""
+            <div style='text-align:center; margin-bottom:1rem; padding: 10px; 
+                 background: rgba({0, 123, 255, 0.1 if current_player == "X" else 220, 53, 69, 0.1});
+                 border-radius: 10px;'>
+                <h3 style='color: {player_color}'>Current Player: {player_symbol} {current_player}</h3>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        # Create the enhanced Tic Tac Toe board
+        display_enhanced_ttt_board(board)
+        
+        # Game over state
+        if st.session_state.tic_tac_toe_game_over:
+            if st.session_state.tic_tac_toe_winner == "Draw":
+                st.markdown("""
+                <div class='draw-text' style='padding: 20px; background: rgba(255, 152, 0, 0.1); border-radius: 10px;'>
+                    🤝 IT'S A DRAW! 🤝
+                </div>
+                """, unsafe_allow_html=True)
+            elif st.session_state.tic_tac_toe_winner == "X":
+                st.markdown("""
+                <div class='win-text' style='padding: 20px; background: rgba(76, 175, 80, 0.1); border-radius: 10px;'>
+                    🎉 YOU WIN! 🎉
+                </div>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown("""
+                <div class='lose-text' style='padding: 20px; background: rgba(244, 67, 54, 0.1); border-radius: 10px;'>
+                    💔 COMPUTER WINS! 💔
+                </div>
+                """, unsafe_allow_html=True)
+            
+            if st.button("Play Again", key="ttt_play_again"):
+                reset_tic_tac_toe()
+                st.session_state.tic_tac_toe_difficulty = difficulty
+                st.rerun()
+        
+        st.markdown('</div>', unsafe_allow_html=True)
 
-def display_tic_tac_toe_board(board):
-    """Display interactive Tic Tac Toe board"""
-    board_container = st.container()
+def display_enhanced_ttt_board(board):
+    """Display enhanced Tic Tac Toe board with better styling"""
+    st.markdown('<div class="ttt-board">', unsafe_allow_html=True)
     
-    with board_container:
-        # Create a 3x3 grid of buttons
-        for i in range(3):
-            cols = st.columns(3)
-            for j in range(3):
-                index = i * 3 + j
-                if board[index] == ' ' and not st.session_state.tic_tac_toe_game_over:
+    # Create 3x3 grid
+    for i in range(3):
+        cols = st.columns(3)
+        for j in range(3):
+            index = i * 3 + j
+            with cols[j]:
+                cell_value = board[index]
+                cell_class = "ttt-x" if cell_value == "X" else "ttt-o" if cell_value == "O" else ""
+                btn_id = f"ttt_btn_{index}"
+                
+                if cell_value == ' ' and not st.session_state.tic_tac_toe_game_over:
                     # Empty cell - create clickable button
-                    if cols[j].button(" ", key=f"ttt_cell_{index}", 
-                                     help="Click to place your X",
-                                     on_click=make_move, args=(index,)):
-                        pass
+                    st.markdown(f"""
+                    <div class="ttt-cell" onclick="document.getElementById('{btn_id}').click()"></div>
+                    """, unsafe_allow_html=True)
+                    
+                    # Hidden button to handle the click
+                    if st.button("", key=btn_id, help="Place your X here", on_click=None):
+                        make_ttt_move(index)
+                        st.rerun()
                 else:
                     # Show X or O with appropriate styling
-                    symbol = board[index]
-                    if symbol == 'X':
-                        cols[j].markdown("""
-                        <div style='height:80px; display:flex; justify-content:center; 
-                        align-items:center; font-size:2rem; color:#2196F3;'>❌</div>
-                        """, unsafe_allow_html=True)
-                    elif symbol == 'O':
-                        cols[j].markdown("""
-                        <div style='height:80px; display:flex; justify-content:center; 
-                        align-items:center; font-size:2rem; color:#F44336;'>⭕</div>
-                        """, unsafe_allow_html=True)
-                    else:
-                        cols[j].markdown("""
-                        <div style='height:80px; display:flex; justify-content:center; 
-                        align-items:center; border:1px solid #ddd;'></div>
-                        """, unsafe_allow_html=True)
+                    symbol = "❌" if cell_value == "X" else "⭕" if cell_value == "O" else ""
+                    st.markdown(f"""
+                    <div class="ttt-cell {cell_class}">{symbol}</div>
+                    """, unsafe_allow_html=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
-def make_move(index):
+def make_ttt_move(index):
     """Process a player's move in Tic Tac Toe"""
     board = st.session_state.tic_tac_toe_board
     current_player = st.session_state.tic_tac_toe_current_player
@@ -580,9 +913,11 @@ def make_move(index):
             
             # If it's computer's turn, make a move
             if st.session_state.tic_tac_toe_current_player == 'O':
-                computer_move(st.session_state.tic_tac_toe_difficulty)
+                # Add a slight delay for better UX
+                time.sleep(0.5)
+                make_computer_move(st.session_state.tic_tac_toe_difficulty)
 
-def computer_move(difficulty):
+def make_computer_move(difficulty):
     """Computer makes a move in Tic Tac Toe"""
     board = st.session_state.tic_tac_toe_board
     
@@ -679,8 +1014,6 @@ def reset_tic_tac_toe():
     st.session_state.tic_tac_toe_current_player = 'X'
     st.session_state.tic_tac_toe_game_over = False
     st.session_state.tic_tac_toe_winner = None
-    st.session_state.tic_tac_toe_difficulty = "Medium"  # Default difficulty
 
 if __name__ == "__main__":
     main()
-
