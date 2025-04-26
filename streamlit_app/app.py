@@ -262,90 +262,84 @@ def main():
 def display_rules(game_type):
     with st.expander("Game Rules", expanded=False):
         if game_type == "battleship":
+            # Header
+            st.markdown("## 🚢 Battleship Rules")
+            
+            # Simple container with blue background
             st.markdown("""
-            <div style="background: #E3F2FD; padding: 15px; border-radius: 10px; border-left: 5px solid #1E88E5;">
-                <h3 style="color: #1565C0; text-align: center; margin-bottom: 15px;">🚢 Battleship Rules</h3>
-                
-                <ul style="list-style-type: none; padding-left: 0;">
-                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <span style="background-color: #1E88E5; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">1</span>
-                        Play on a 5×5 grid against the computer
-                    </li>
-                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <span style="background-color: #1E88E5; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">2</span>
-                        Place your 3 ships on the grid
-                    </li>
-                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <span style="background-color: #1E88E5; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">3</span>
-                        Take turns firing at opponent's grid
-                    </li>
-                    <li style="display: flex; align-items: center;">
-                        <span style="background-color: #1E88E5; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">4</span>
-                        First to sink all opponent's ships wins! 🏆
-                    </li>
-                </ul>
+            <div style="background-color: #E3F2FD; padding: 15px; border-radius: 10px;">
             </div>
             """, unsafe_allow_html=True)
+            
+            # Use Streamlit's native markdown for rules
+            st.markdown("""
+            1. **Play** on a 5×5 grid against the computer
+            2. **Place** your 3 ships on the grid
+            3. **Take turns** firing at opponent's grid
+            4. **First** to sink all opponent's ships wins! 🏆
+            """)
             
         elif game_type == "tictactoe":
+            # Header
+            st.markdown("## ❌⭕ Tic Tac Toe Rules")
+            
+            # Purple container
             st.markdown("""
-            <div style="background: #EDE7F6; padding: 15px; border-radius: 10px; border-left: 5px solid #7B61FF;">
-                <h3 style="color: #5E35B1; text-align: center; margin-bottom: 15px;">❌⭕ Tic Tac Toe Rules</h3>
-                
-                <ul style="list-style-type: none; padding-left: 0;">
-                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <span style="background-color: #7B61FF; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">1</span>
-                        You play as ❌, computer plays as ⭕
-                    </li>
-                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <span style="background-color: #7B61FF; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">2</span>
-                        Take turns placing marks on the 3×3 grid
-                    </li>
-                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <span style="background-color: #7B61FF; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">3</span>
-                        First to get 3 in a row wins! 🏆
-                    </li>
-                    <li style="display: flex; align-items: center;">
-                        <span style="background-color: #7B61FF; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">4</span>
-                        If all squares are filled with no winner, it's a draw! 🤝
-                    </li>
-                </ul>
+            <div style="background-color: #EDE7F6; padding: 15px; border-radius: 10px;">
             </div>
             """, unsafe_allow_html=True)
             
-        else:  # RPSLS
+            # Rules using native formatting
             st.markdown("""
-            <div style="background: #F3E5F5; padding: 15px; border-radius: 10px; border-left: 5px solid #9C27B0;">
-                <h3 style="color: #7B1FA2; text-align: center; margin-bottom: 15px;">✊✋✌️🦎🖖 Rock Paper Scissors Lizard Spock</h3>
-                
-                <ul style="list-style-type: none; padding-left: 0;">
-                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <span style="font-size: 1.3rem; min-width: 30px; text-align: center; margin-right: 10px;">✊</span>
-                        Rock crushes Scissors and Lizard
-                    </li>
-                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <span style="font-size: 1.3rem; min-width: 30px; text-align: center; margin-right: 10px;">✋</span>
-                        Paper covers Rock and disproves Spock
-                    </li>
-                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <span style="font-size: 1.3rem; min-width: 30px; text-align: center; margin-right: 10px;">✌️</span>
-                        Scissors cuts Paper and decapitates Lizard
-                    </li>
-                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <span style="font-size: 1.3rem; min-width: 30px; text-align: center; margin-right: 10px;">🦎</span>
-                        Lizard eats Paper and poisons Spock
-                    </li>
-                    <li style="display: flex; align-items: center; margin-bottom: 15px;">
-                        <span style="font-size: 1.3rem; min-width: 30px; text-align: center; margin-right: 10px;">🖖</span>
-                        Spock smashes Scissors and vaporizes Rock
-                    </li>
-                </ul>
-                
-                <div style="background-color: #E1BEE7; padding: 10px; border-radius: 8px; text-align: center;">
-                    <strong>🏆 First to score 3 points wins the game! 🏆</strong>
-                </div>
+            1. **You play** as ❌, computer plays as ⭕
+            2. **Take turns** placing marks on the 3×3 grid
+            3. **First** to get 3 in a row wins! 🏆
+            4. If all squares are filled with no winner, it's a **draw**! 🤝
+            """)
+            
+        else:  # RPSLS
+            # Header
+            st.markdown("## ✊✋✌️🦎🖖 Rock Paper Scissors Lizard Spock")
+            
+            # Pink container
+            st.markdown("""
+            <div style="background-color: #F3E5F5; padding: 15px; border-radius: 10px;">
             </div>
             """, unsafe_allow_html=True)
+            
+            # Create two columns
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.markdown("### What beats what:")
+                st.markdown("""
+                - ✊ Rock crushes Scissors
+                - ✊ Rock crushes Lizard
+                - ✋ Paper covers Rock
+                """)
+                
+            with col2:
+                st.markdown("### More combinations:")
+                st.markdown("""
+                - ✋ Paper disproves Spock
+                - ✌️ Scissors cuts Paper
+                - ✌️ Scissors decapitates Lizard
+                """)
+                
+            with col1:
+                st.markdown("""
+                - 🦎 Lizard eats Paper
+                - 🦎 Lizard poisons Spock
+                """)
+                
+            with col2:
+                st.markdown("""
+                - 🖖 Spock smashes Scissors
+                - 🖖 Spock vaporizes Rock
+                """)
+            
+            # Winning condition
+            st.info("🏆 **First to score 3 points wins the game!** 🏆")
 
 
 
