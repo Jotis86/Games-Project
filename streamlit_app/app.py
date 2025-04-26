@@ -263,93 +263,86 @@ def display_rules(game_type):
     with st.expander("Game Rules", expanded=False):
         if game_type == "battleship":
             st.markdown("""
-            <div style="background: linear-gradient(to right, rgba(100, 181, 246, 0.2), rgba(30, 136, 229, 0.1)); padding: 20px; border-radius: 10px; border-left: 5px solid #1E88E5;">
-                <h2 style="color: #1565C0; text-align: center; margin-bottom: 15px; font-size: 1.8rem;">🚢 Battleship Rules</h2>
+            <div style="background: #E3F2FD; padding: 15px; border-radius: 10px; border-left: 5px solid #1E88E5;">
+                <h3 style="color: #1565C0; text-align: center; margin-bottom: 15px;">🚢 Battleship Rules</h3>
                 
-                <div style="display: flex; margin-bottom: 15px;">
-                    <div style="background-color: #1E88E5; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">1</div>
-                    <div>Play on a 5×5 grid against the computer</div>
-                </div>
-                
-                <div style="display: flex; margin-bottom: 15px;">
-                    <div style="background-color: #1E88E5; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">2</div>
-                    <div>Place your 3 ships on the grid</div>
-                </div>
-                
-                <div style="display: flex; margin-bottom: 15px;">
-                    <div style="background-color: #1E88E5; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">3</div>
-                    <div>Take turns firing at opponent's grid</div>
-                </div>
-                
-                <div style="display: flex;">
-                    <div style="background-color: #1E88E5; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">4</div>
-                    <div>First to sink all opponent's ships wins! 🏆</div>
-                </div>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="background-color: #1E88E5; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">1</span>
+                        Play on a 5×5 grid against the computer
+                    </li>
+                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="background-color: #1E88E5; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">2</span>
+                        Place your 3 ships on the grid
+                    </li>
+                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="background-color: #1E88E5; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">3</span>
+                        Take turns firing at opponent's grid
+                    </li>
+                    <li style="display: flex; align-items: center;">
+                        <span style="background-color: #1E88E5; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">4</span>
+                        First to sink all opponent's ships wins! 🏆
+                    </li>
+                </ul>
             </div>
             """, unsafe_allow_html=True)
             
         elif game_type == "tictactoe":
             st.markdown("""
-            <div style="background: linear-gradient(to right, rgba(123, 97, 255, 0.2), rgba(123, 97, 255, 0.1)); padding: 20px; border-radius: 10px; border-left: 5px solid #7B61FF;">
-                <h2 style="color: #5E35B1; text-align: center; margin-bottom: 15px; font-size: 1.8rem;">❌⭕ Tic Tac Toe Rules</h2>
+            <div style="background: #EDE7F6; padding: 15px; border-radius: 10px; border-left: 5px solid #7B61FF;">
+                <h3 style="color: #5E35B1; text-align: center; margin-bottom: 15px;">❌⭕ Tic Tac Toe Rules</h3>
                 
-                <div style="display: flex; margin-bottom: 15px;">
-                    <div style="background-color: #7B61FF; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">1</div>
-                    <div>You play as ❌, computer plays as ⭕</div>
-                </div>
-                
-                <div style="display: flex; margin-bottom: 15px;">
-                    <div style="background-color: #7B61FF; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">2</div>
-                    <div>Take turns placing marks on the 3×3 grid</div>
-                </div>
-                
-                <div style="display: flex; margin-bottom: 15px;">
-                    <div style="background-color: #7B61FF; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">3</div>
-                    <div>First to get 3 in a row wins! 🏆</div>
-                </div>
-                
-                <div style="display: flex;">
-                    <div style="background-color: #7B61FF; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">4</div>
-                    <div>If all squares are filled with no winner, it's a draw! 🤝</div>
-                </div>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="background-color: #7B61FF; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">1</span>
+                        You play as ❌, computer plays as ⭕
+                    </li>
+                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="background-color: #7B61FF; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">2</span>
+                        Take turns placing marks on the 3×3 grid
+                    </li>
+                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="background-color: #7B61FF; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">3</span>
+                        First to get 3 in a row wins! 🏆
+                    </li>
+                    <li style="display: flex; align-items: center;">
+                        <span style="background-color: #7B61FF; color: white; border-radius: 50%; min-width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">4</span>
+                        If all squares are filled with no winner, it's a draw! 🤝
+                    </li>
+                </ul>
             </div>
             """, unsafe_allow_html=True)
             
         else:  # RPSLS
             st.markdown("""
-            <div style="background: linear-gradient(to right, rgba(156, 39, 176, 0.2), rgba(156, 39, 176, 0.1)); padding: 20px; border-radius: 10px; border-left: 5px solid #9C27B0;">
-                <h2 style="color: #7B1FA2; text-align: center; margin-bottom: 15px; font-size: 1.8rem;">✊✋✌️🦎🖖 Rock Paper Scissors Lizard Spock Rules</h2>
+            <div style="background: #F3E5F5; padding: 15px; border-radius: 10px; border-left: 5px solid #9C27B0;">
+                <h3 style="color: #7B1FA2; text-align: center; margin-bottom: 15px;">✊✋✌️🦎🖖 Rock Paper Scissors Lizard Spock</h3>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-                    <div style="display: flex; align-items: center;">
-                        <div style="font-size: 1.5rem; margin-right: 10px; width: 40px; text-align: center;">✊</div>
-                        <div>Rock crushes Scissors<br>Rock crushes Lizard</div>
-                    </div>
-                    
-                    <div style="display: flex; align-items: center;">
-                        <div style="font-size: 1.5rem; margin-right: 10px; width: 40px; text-align: center;">✋</div>
-                        <div>Paper covers Rock<br>Paper disproves Spock</div>
-                    </div>
-                    
-                    <div style="display: flex; align-items: center;">
-                        <div style="font-size: 1.5rem; margin-right: 10px; width: 40px; text-align: center;">✌️</div>
-                        <div>Scissors cuts Paper<br>Scissors decapitates Lizard</div>
-                    </div>
-                    
-                    <div style="display: flex; align-items: center;">
-                        <div style="font-size: 1.5rem; margin-right: 10px; width: 40px; text-align: center;">🦎</div>
-                        <div>Lizard eats Paper<br>Lizard poisons Spock</div>
-                    </div>
-                    
-                    <div style="display: flex; align-items: center;">
-                        <div style="font-size: 1.5rem; margin-right: 10px; width: 40px; text-align: center;">🖖</div>
-                        <div>Spock smashes Scissors<br>Spock vaporizes Rock</div>
-                    </div>
-                </div>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 1.3rem; min-width: 30px; text-align: center; margin-right: 10px;">✊</span>
+                        Rock crushes Scissors and Lizard
+                    </li>
+                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 1.3rem; min-width: 30px; text-align: center; margin-right: 10px;">✋</span>
+                        Paper covers Rock and disproves Spock
+                    </li>
+                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 1.3rem; min-width: 30px; text-align: center; margin-right: 10px;">✌️</span>
+                        Scissors cuts Paper and decapitates Lizard
+                    </li>
+                    <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 1.3rem; min-width: 30px; text-align: center; margin-right: 10px;">🦎</span>
+                        Lizard eats Paper and poisons Spock
+                    </li>
+                    <li style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <span style="font-size: 1.3rem; min-width: 30px; text-align: center; margin-right: 10px;">🖖</span>
+                        Spock smashes Scissors and vaporizes Rock
+                    </li>
+                </ul>
                 
-                <div style="background-color: rgba(156, 39, 176, 0.1); padding: 10px; border-radius: 8px; margin-top: 15px; display: flex; align-items: center; justify-content: center;">
-                    <div style="background-color: #9C27B0; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">🏆</div>
-                    <div><strong>First to score 3 points wins the game!</strong></div>
+                <div style="background-color: #E1BEE7; padding: 10px; border-radius: 8px; text-align: center;">
+                    <strong>🏆 First to score 3 points wins the game! 🏆</strong>
                 </div>
             </div>
             """, unsafe_allow_html=True)
