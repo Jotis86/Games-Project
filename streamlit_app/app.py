@@ -290,7 +290,7 @@ def display_rules(game_type):
 
 # ROCK PAPER SCISSORS LIZARD SPOCK IMPLEMENTATION
 def play_rpsls():
-    st.markdown('<div class="game-container">', unsafe_allow_html=True)
+    #st.markdown('<div class="game-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="game-title">Rock Paper Scissors Lizard Spock ✊✋✌️🦎🖖</h2>', unsafe_allow_html=True)
     
     # Initialize session state
