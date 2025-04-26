@@ -5,87 +5,151 @@ import time
 # Set page configuration
 st.set_page_config(page_title="Arcade Games Hub", layout="wide", initial_sidebar_state="expanded")
 
-# Simple CSS for clean styling
+# Enhanced CSS for better styling
 def load_css():
     st.markdown("""
     <style>
-    /* Simple clean styles */
+    /* Enhanced styling with gradients and better colors */
     .header-container {
-        background-color: #f0f2f6;
-        padding: 1.5rem;
-        border-radius: 10px;
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
+        padding: 1.8rem;
+        border-radius: 15px;
         margin-bottom: 2rem;
         text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        color: white;
+    }
+    
+    .header-container h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .header-container p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+    }
+    
+    .sidebar-header {
+        background: linear-gradient(135deg, #a777e3, #6e8efb);
+        padding: 1rem;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
     
     .game-container {
         background-color: white;
         padding: 2rem;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         margin-bottom: 2rem;
+        border: 1px solid #f0f2f6;
     }
     
     .game-title {
-        color: #1e88e5;
+        color: #6e8efb;
         text-align: center;
         margin-bottom: 1.5rem;
-        font-size: 2rem;
+        font-size: 2.2rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
     .score-card {
-        background-color: #f8f9fa;
-        padding: 1rem;
-        border-radius: 10px;
+        background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+        padding: 1.2rem;
+        border-radius: 12px;
         text-align: center;
         margin-bottom: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border: 1px solid #dee2e6;
     }
     
     .score-value {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
         font-weight: bold;
         margin: 0.5rem 0;
     }
     
-    .player-score { color: #1e88e5; }
+    .player-score { color: #6e8efb; }
     .computer-score { color: #f44336; }
     
     .game-result {
         text-align: center;
-        padding: 1rem;
-        border-radius: 8px;
-        margin: 1rem 0;
+        padding: 1.2rem;
+        border-radius: 10px;
+        margin: 1.2rem 0;
         font-weight: bold;
+        font-size: 1.2rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     
     .result-win { background-color: rgba(76, 175, 80, 0.2); color: #388e3c; }
     .result-lose { background-color: rgba(244, 67, 54, 0.2); color: #d32f2f; }
     .result-draw { background-color: rgba(255, 152, 0, 0.2); color: #f57c00; }
     
+    /* Choice buttons */
+    .choice-btn {
+        padding: 10px;
+        border-radius: 50%;
+        font-size: 2rem;
+        background-color: white;
+        border: 2px solid #dee2e6;
+        transition: all 0.3s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .choice-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
     /* Tic Tac Toe board */
     .ttt-cell {
-        height: 100px;
+        height: 110px;
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: #f8f9fa;
-        border-radius: 8px;
-        font-size: 2.5rem;
+        border-radius: 10px;
+        font-size: 2.8rem;
         font-weight: bold;
         cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: all 0.2s;
     }
     
     .ttt-cell:hover {
         background-color: #e9ecef;
+        transform: scale(1.03);
     }
     
-    .ttt-x { color: #1e88e5; }
+    .ttt-x { color: #6e8efb; }
     .ttt-o { color: #f44336; }
     
     /* GitHub button */
     .github-link {
         text-align: center;
-        margin-top: 1rem;
+        margin-top: 1.5rem;
+        padding: 1rem;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+    }
+    
+    .github-link a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+    }
+    
+    .github-link img {
+        margin-right: 8px;
     }
     
     /* Battleship grid */
@@ -93,40 +157,74 @@ def load_css():
         margin: 0 auto;
     }
     
-    .ship-cell { background-color: #bbdefb; }
-    .hit-cell { background-color: #ffcdd2; }
-    .miss-cell { background-color: #e0e0e0; }
+    .ship-cell { 
+        background: linear-gradient(to bottom, #bbdefb, #90caf9);
+        border: 1px solid #64b5f6;
+    }
+    .hit-cell { 
+        background: linear-gradient(to bottom, #ffcdd2, #ef9a9a);
+        border: 1px solid #ef5350;
+    }
+    .miss-cell { 
+        background: linear-gradient(to bottom, #e0e0e0, #bdbdbd);
+        border: 1px solid #9e9e9e;
+    }
+    
+    /* Game selection button */
+    .game-select-btn {
+        padding: 0.8rem;
+        border-radius: 10px;
+        margin: 0.5rem 0;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        transition: all 0.3s;
+        text-align: center;
+    }
+    
+    .game-select-btn:hover {
+        background-color: #e9ecef;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .game-select-active {
+        background-color: #6e8efb;
+        color: white;
+    }
     </style>
     """, unsafe_allow_html=True)
 
 def main():
     load_css()
     
-    # Simple header
+    # Enhanced header
     st.markdown("""
     <div class="header-container">
         <h1>🎮 Arcade Games Hub</h1>
-        <p>Simple, fun, classic games</p>
+        <p>Classic games with a modern twist - Fun for everyone!</p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Sidebar with clean design
+    # Enhanced sidebar with better styling
     with st.sidebar:
-        st.title("Game Selection")
-        st.markdown("---")
+        st.markdown("""
+        <div class="sidebar-header">
+            <h2>Game Selection</h2>
+        </div>
+        """, unsafe_allow_html=True)
         
         game = st.selectbox("Choose a game:", 
-                         ["Battleship", "Tic Tac Toe", "Rock Paper Scissors"])
+                         ["Battleship", "Tic Tac Toe", "Rock Paper Scissors Lizard Spock"])
         
         st.markdown("---")
         
         if game == "Tic Tac Toe":
             difficulty = st.radio("Difficulty:", ["Easy", "Hard"])
         
-        # GitHub link
+        # GitHub link with better styling
         st.markdown("""
         <div class="github-link">
-            <a href="https://github.com/yourusername/arcade-games-hub" target="_blank">
+            <a href="https://github.com/Jotis86/Games-Project" target="_blank">
                 <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="30">
                 View on GitHub
             </a>
@@ -140,9 +238,9 @@ def main():
     elif game == "Tic Tac Toe":
         display_rules("tictactoe")
         play_tic_tac_toe(difficulty)
-    else:  # Rock Paper Scissors
-        display_rules("rps")
-        play_rps()
+    else:  # Rock Paper Scissors Lizard Spock
+        display_rules("rpsls")
+        play_rpsls()
 
 def display_rules(game_type):
     with st.expander("Game Rules", expanded=False):
@@ -162,19 +260,21 @@ def display_rules(game_type):
             - First to get 3 in a row wins
             - If all squares are filled with no winner, it's a draw
             """)
-        else:  # RPS
+        else:  # RPSLS
             st.markdown("""
-            ### ✊✋✌️ Rock Paper Scissors Rules
-            - Rock beats Scissors
-            - Scissors beats Paper
-            - Paper beats Rock
+            ### ✊✋✌️🦎🖖 Rock Paper Scissors Lizard Spock Rules
+            - Rock crushes Scissors and crushes Lizard
+            - Paper covers Rock and disproves Spock
+            - Scissors cuts Paper and decapitates Lizard
+            - Lizard eats Paper and poisons Spock
+            - Spock smashes Scissors and vaporizes Rock
             - First to score 3 points wins
             """)
 
-# ROCK PAPER SCISSORS IMPLEMENTATION
-def play_rps():
+# ROCK PAPER SCISSORS LIZARD SPOCK IMPLEMENTATION
+def play_rpsls():
     st.markdown('<div class="game-container">', unsafe_allow_html=True)
-    st.markdown('<h2 class="game-title">Rock Paper Scissors ✊✋✌️</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="game-title">Rock Paper Scissors Lizard Spock ✊✋✌️🦎🖖</h2>', unsafe_allow_html=True)
     
     # Initialize session state
     if 'player_score' not in st.session_state:
@@ -227,7 +327,7 @@ def play_rps():
             st.markdown(f"""
             <div style="text-align: center;">
                 <h4>You chose</h4>
-                <div style="font-size: 3rem;">{get_emoji(st.session_state.player_choice)}</div>
+                <div style="font-size: 3rem;">{get_rpsls_emoji(st.session_state.player_choice)}</div>
                 <p>{st.session_state.player_choice}</p>
             </div>
             """, unsafe_allow_html=True)
@@ -236,25 +336,31 @@ def play_rps():
             st.markdown(f"""
             <div style="text-align: center;">
                 <h4>Computer chose</h4>
-                <div style="font-size: 3rem;">{get_emoji(st.session_state.computer_choice)}</div>
+                <div style="font-size: 3rem;">{get_rpsls_emoji(st.session_state.computer_choice)}</div>
                 <p>{st.session_state.computer_choice}</p>
             </div>
             """, unsafe_allow_html=True)
     
-    # Button choices
+    # Button choices - now with all 5 options
     if not st.session_state.game_over:
         st.markdown("<h3 style='text-align: center;'>Make your choice:</h3>", unsafe_allow_html=True)
         
-        col1, col2, col3 = st.columns(3)
+        col1, col2, col3, col4, col5 = st.columns(5)
         with col1:
             if st.button("✊ Rock", use_container_width=True):
-                play_round("Rock")
+                play_rpsls_round("Rock")
         with col2:
             if st.button("✋ Paper", use_container_width=True):
-                play_round("Paper")
+                play_rpsls_round("Paper")
         with col3:
             if st.button("✌️ Scissors", use_container_width=True):
-                play_round("Scissors")
+                play_rpsls_round("Scissors")
+        with col4:
+            if st.button("🦎 Lizard", use_container_width=True):
+                play_rpsls_round("Lizard")
+        with col5:
+            if st.button("🖖 Spock", use_container_width=True):
+                play_rpsls_round("Spock")
     
     # Game over state
     if st.session_state.game_over:
@@ -264,22 +370,23 @@ def play_rps():
             st.error("💔 Game over! The computer won! 💔")
         
         if st.button("Play Again"):
-            reset_rps()
+            reset_rpsls()
             st.rerun()
     
     st.markdown('</div>', unsafe_allow_html=True)
 
-def get_emoji(choice):
-    if choice == "Rock":
-        return "✊"
-    elif choice == "Paper":
-        return "✋"
-    elif choice == "Scissors":
-        return "✌️"
-    return ""
+def get_rpsls_emoji(choice):
+    emojis = {
+        "Rock": "✊",
+        "Paper": "✋",
+        "Scissors": "✌️",
+        "Lizard": "🦎",
+        "Spock": "🖖"
+    }
+    return emojis.get(choice, "")
 
-def play_round(player_choice):
-    choices = ["Rock", "Paper", "Scissors"]
+def play_rpsls_round(player_choice):
+    choices = ["Rock", "Paper", "Scissors", "Lizard", "Spock"]
     computer_choice = random.choice(choices)
     
     # Save choices
@@ -287,7 +394,7 @@ def play_round(player_choice):
     st.session_state.computer_choice = computer_choice
     
     # Determine winner
-    result = determine_winner(player_choice, computer_choice)
+    result = determine_rpsls_winner(player_choice, computer_choice)
     st.session_state.round_result = result
     
     # Update scores
@@ -303,18 +410,24 @@ def play_round(player_choice):
     # Force UI update
     st.rerun()
 
-def determine_winner(player, computer):
+def determine_rpsls_winner(player, computer):
     if player == computer:
         return "It's a draw!"
     
-    if (player == "Rock" and computer == "Scissors") or \
-       (player == "Paper" and computer == "Rock") or \
-       (player == "Scissors" and computer == "Paper"):
+    winning_combinations = {
+        "Rock": ["Scissors", "Lizard"],
+        "Paper": ["Rock", "Spock"],
+        "Scissors": ["Paper", "Lizard"],
+        "Lizard": ["Paper", "Spock"],
+        "Spock": ["Rock", "Scissors"]
+    }
+    
+    if computer in winning_combinations[player]:
         return "You win!"
     else:
         return "You lose!"
 
-def reset_rps():
+def reset_rpsls():
     st.session_state.player_score = 0
     st.session_state.computer_score = 0
     st.session_state.game_over = False
@@ -508,19 +621,17 @@ def play_battleship():
                                show_ships=False)
     
     # Game over states
-    if st.session_state.bs_ships_placed and st.session_state.bs_game_started:
-        if check_battleship_winner(st.session_state.bs_computer_hidden_board):
-            st.success("🎉 VICTORY! You sank all enemy ships! 🎉")
-            st.session_state.bs_game_started = False
-            if st.button("Play Again", key="bs_play_again1"):
-                reset_battleship()
-                st.rerun()
-        elif check_battleship_winner(st.session_state.bs_player_board):
-            st.error("💔 DEFEAT! Your fleet has been destroyed! 💔")
-            st.session_state.bs_game_started = False
-            if st.button("Play Again", key="bs_play_again2"):
-                reset_battleship()
-                st.rerun()
+    if st.session_state.bs_ships_placed and not st.session_state.bs_game_started:
+        st.success("🎉 VICTORY! You sank all enemy ships! 🎉") if check_battleship_winner(st.session_state.bs_computer_hidden_board) else st.error("💔 DEFEAT! Your fleet has been destroyed! 💔")
+        
+        # Create a unique key for the Play Again button
+        if st.button("Play Again", key="bs_play_again_final"):
+            # Complete reset of all battleship-related session state
+            for key in list(st.session_state.keys()):
+                if key.startswith('bs_'):
+                    del st.session_state[key]
+            reset_battleship()
+            st.rerun()
     
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -588,9 +699,17 @@ def handle_battleship_click(board_type, row, col):
             else:
                 st.session_state.bs_computer_board[row][col] = '❌'
             
-            # Computer's turn if game not over
-            if not check_battleship_winner(st.session_state.bs_computer_hidden_board):
-                computer_battleship_turn()
+            # Check if player won
+            if check_battleship_winner(st.session_state.bs_computer_hidden_board):
+                st.session_state.bs_game_started = False
+                return
+            
+            # Computer's turn
+            computer_battleship_turn()
+            
+            # Check if computer won
+            if check_battleship_winner(st.session_state.bs_player_board):
+                st.session_state.bs_game_started = False
 
 def computer_battleship_turn():
     while True:
