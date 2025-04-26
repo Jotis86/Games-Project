@@ -265,24 +265,24 @@ def display_rules(game_type):
             st.markdown("""
             <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 10px;">
                 <div style="background-color: #1565C0; color: white; padding: 15px; text-align: center;">
-                    <h3 style="margin: 0; font-size: 1.5rem;">🚢 Battleship Rules</h3>
+                    <h3 style="margin: 0; font-size: 1.5rem; color: white;">🚢 Battleship Rules</h3>
                 </div>
                 <div style="background-color: white; padding: 20px;">
                     <div style="display: flex; align-items: center; margin-bottom: 12px;">
                         <div style="background-color: #1E88E5; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 0.9rem;">1</div>
-                        <div><strong>Play</strong> on a 5×5 grid against the computer</div>
+                        <div style="color: #333;"><strong>Play</strong> on a 5×5 grid against the computer</div>
                     </div>
                     <div style="display: flex; align-items: center; margin-bottom: 12px;">
                         <div style="background-color: #1E88E5; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 0.9rem;">2</div>
-                        <div><strong>Place</strong> your 3 ships on the grid</div>
+                        <div style="color: #333;"><strong>Place</strong> your 3 ships on the grid</div>
                     </div>
                     <div style="display: flex; align-items: center; margin-bottom: 12px;">
                         <div style="background-color: #1E88E5; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 0.9rem;">3</div>
-                        <div><strong>Take turns</strong> firing at opponent's grid</div>
+                        <div style="color: #333;"><strong>Take turns</strong> firing at opponent's grid</div>
                     </div>
                     <div style="display: flex; align-items: center;">
                         <div style="background-color: #1E88E5; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 0.9rem;">4</div>
-                        <div><strong>First</strong> to sink all opponent's ships wins! 🏆</div>
+                        <div style="color: #333;"><strong>First</strong> to sink all opponent's ships wins! 🏆</div>
                     </div>
                 </div>
             </div>
@@ -292,24 +292,24 @@ def display_rules(game_type):
             st.markdown("""
             <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 10px;">
                 <div style="background-color: #5E35B1; color: white; padding: 15px; text-align: center;">
-                    <h3 style="margin: 0; font-size: 1.5rem;">❌⭕ Tic Tac Toe Rules</h3>
+                    <h3 style="margin: 0; font-size: 1.5rem; color: white;">❌⭕ Tic Tac Toe Rules</h3>
                 </div>
                 <div style="background-color: white; padding: 20px;">
                     <div style="display: flex; align-items: center; margin-bottom: 12px;">
                         <div style="background-color: #7B61FF; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 0.9rem;">1</div>
-                        <div><strong>You play</strong> as ❌, computer plays as ⭕</div>
+                        <div style="color: #333;"><strong>You play</strong> as ❌, computer plays as ⭕</div>
                     </div>
                     <div style="display: flex; align-items: center; margin-bottom: 12px;">
                         <div style="background-color: #7B61FF; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 0.9rem;">2</div>
-                        <div><strong>Take turns</strong> placing marks on the 3×3 grid</div>
+                        <div style="color: #333;"><strong>Take turns</strong> placing marks on the 3×3 grid</div>
                     </div>
                     <div style="display: flex; align-items: center; margin-bottom: 12px;">
                         <div style="background-color: #7B61FF; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 0.9rem;">3</div>
-                        <div><strong>First</strong> to get 3 in a row wins! 🏆</div>
+                        <div style="color: #333;"><strong>First</strong> to get 3 in a row wins! 🏆</div>
                     </div>
                     <div style="display: flex; align-items: center;">
                         <div style="background-color: #7B61FF; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 0.9rem;">4</div>
-                        <div>If all squares are filled with no winner, it's a <strong>draw</strong>! 🤝</div>
+                        <div style="color: #333;">If all squares are filled with no winner, it's a <strong>draw</strong>! 🤝</div>
                     </div>
                 </div>
             </div>
@@ -319,37 +319,37 @@ def display_rules(game_type):
             st.markdown("""
             <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 10px;">
                 <div style="background-color: #7B1FA2; color: white; padding: 15px; text-align: center;">
-                    <h3 style="margin: 0; font-size: 1.5rem;">✊✋✌️🦎🖖 Rock Paper Scissors Lizard Spock</h3>
+                    <h3 style="margin: 0; font-size: 1.5rem; color: white;">✊✋✌️🦎🖖 Rock Paper Scissors Lizard Spock</h3>
                 </div>
                 <div style="background-color: white; padding: 20px;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-                        <div style="border: 1px solid #E1BEE7; border-radius: 8px; padding: 10px;">
+                        <div style="border: 1px solid #E1BEE7; border-radius: 8px; padding: 10px; background-color: white;">
                             <div style="text-align: center; margin-bottom: 8px; font-weight: bold; color: #7B1FA2;">✊ Rock</div>
-                            <div style="font-size: 0.9rem;">• Crushes Scissors</div>
-                            <div style="font-size: 0.9rem;">• Crushes Lizard</div>
+                            <div style="font-size: 0.9rem; color: #333;">• Crushes Scissors</div>
+                            <div style="font-size: 0.9rem; color: #333;">• Crushes Lizard</div>
                         </div>
-                        <div style="border: 1px solid #E1BEE7; border-radius: 8px; padding: 10px;">
+                        <div style="border: 1px solid #E1BEE7; border-radius: 8px; padding: 10px; background-color: white;">
                             <div style="text-align: center; margin-bottom: 8px; font-weight: bold; color: #7B1FA2;">✋ Paper</div>
-                            <div style="font-size: 0.9rem;">• Covers Rock</div>
-                            <div style="font-size: 0.9rem;">• Disproves Spock</div>
+                            <div style="font-size: 0.9rem; color: #333;">• Covers Rock</div>
+                            <div style="font-size: 0.9rem; color: #333;">• Disproves Spock</div>
                         </div>
-                        <div style="border: 1px solid #E1BEE7; border-radius: 8px; padding: 10px;">
+                        <div style="border: 1px solid #E1BEE7; border-radius: 8px; padding: 10px; background-color: white;">
                             <div style="text-align: center; margin-bottom: 8px; font-weight: bold; color: #7B1FA2;">✌️ Scissors</div>
-                            <div style="font-size: 0.9rem;">• Cuts Paper</div>
-                            <div style="font-size: 0.9rem;">• Decapitates Lizard</div>
+                            <div style="font-size: 0.9rem; color: #333;">• Cuts Paper</div>
+                            <div style="font-size: 0.9rem; color: #333;">• Decapitates Lizard</div>
                         </div>
-                        <div style="border: 1px solid #E1BEE7; border-radius: 8px; padding: 10px;">
+                        <div style="border: 1px solid #E1BEE7; border-radius: 8px; padding: 10px; background-color: white;">
                             <div style="text-align: center; margin-bottom: 8px; font-weight: bold; color: #7B1FA2;">🦎 Lizard</div>
-                            <div style="font-size: 0.9rem;">• Eats Paper</div>
-                            <div style="font-size: 0.9rem;">• Poisons Spock</div>
+                            <div style="font-size: 0.9rem; color: #333;">• Eats Paper</div>
+                            <div style="font-size: 0.9rem; color: #333;">• Poisons Spock</div>
                         </div>
                     </div>
-                    <div style="border: 1px solid #E1BEE7; border-radius: 8px; padding: 10px; width: 48%; margin: 0 auto;">
+                    <div style="border: 1px solid #E1BEE7; border-radius: 8px; padding: 10px; width: 48%; margin: 0 auto; background-color: white;">
                         <div style="text-align: center; margin-bottom: 8px; font-weight: bold; color: #7B1FA2;">🖖 Spock</div>
-                        <div style="font-size: 0.9rem;">• Smashes Scissors</div>
-                        <div style="font-size: 0.9rem;">• Vaporizes Rock</div>
+                        <div style="font-size: 0.9rem; color: #333;">• Smashes Scissors</div>
+                        <div style="font-size: 0.9rem; color: #333;">• Vaporizes Rock</div>
                     </div>
-                    <div style="background-color: #F3E5F5; border-radius: 8px; margin-top: 15px; padding: 10px; text-align: center; font-weight: bold;">
+                    <div style="background-color: #F3E5F5; border-radius: 8px; margin-top: 15px; padding: 10px; text-align: center; font-weight: bold; color: #7B1FA2;">
                         🏆 First to score 3 points wins the game! 🏆
                     </div>
                 </div>
