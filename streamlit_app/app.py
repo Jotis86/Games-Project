@@ -265,12 +265,6 @@ def display_rules(game_type):
             # Header
             st.markdown("## 🚢 Battleship Rules")
             
-            # Simple container with blue background
-            st.markdown("""
-            <div style="background-color: #E3F2FD; padding: 15px; border-radius: 10px;">
-            </div>
-            """, unsafe_allow_html=True)
-            
             # Use Streamlit's native markdown for rules
             st.markdown("""
             1. **Play** on a 5×5 grid against the computer
