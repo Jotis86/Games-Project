@@ -29,35 +29,15 @@ def load_css():
         text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
     
-    .header-container p {
-        font-size: 1.2rem;
-        opacity: 0.9;
-    }
-    
-    .sidebar-banner {
-        background: linear-gradient(135deg, #6e8efb, #a777e3);
-        padding: 1.5rem;
-        border-radius: 10px;
-        margin-bottom: 1.5rem;
-        text-align: center;
-        color: white;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-    
-    .sidebar-banner h2 {
-        font-size: 1.8rem;
+    .header-container h2 {
+        font-size: 2rem;
         margin-bottom: 0.5rem;
         text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     }
     
-    .sidebar-footer {
-        background: linear-gradient(135deg, #a777e3, #6e8efb);
-        padding: 1rem;
-        border-radius: 10px;
-        margin-top: 2rem;
-        text-align: center;
-        color: white;
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    .header-container p {
+        font-size: 1.2rem;
+        opacity: 0.9;
     }
     
     .game-container {
@@ -193,9 +173,6 @@ def load_css():
         text-align: center;
         transition: all 0.3s;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 8px;
     }
     
     .game-option:hover {
@@ -209,6 +186,16 @@ def load_css():
         color: white;
         border: none;
         box-shadow: 0 4px 10px rgba(110, 142, 251, 0.3);
+    }
+    
+    .sidebar-footer {
+        background: linear-gradient(135deg, #a777e3, #6e8efb);
+        padding: 1rem;
+        border-radius: 10px;
+        margin-top: 2rem;
+        text-align: center;
+        color: white;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
     }
     
     .ship-cell { 
@@ -226,92 +213,45 @@ def load_css():
     </style>
     """, unsafe_allow_html=True)
 
-# Function to create a banner image
-def create_banner_image():
-    # Create a new image with a gradient background
-    width, height = 600, 200
-    img = Image.new('RGB', (width, height), color='white')
-    draw = ImageDraw.Draw(img)
-    
-    # Draw gradient background (simplified)
-    for y in range(height):
-        r = int(110 + (130 - 110) * y / height)
-        g = int(142 + (119 - 142) * y / height)
-        b = int(251 + (227 - 251) * y / height)
-        draw.line([(0, y), (width, y)], fill=(r, g, b))
-    
-    # Add arcade-style text
-    try:
-        # Use default font if custom font not available
-        font_size = 50
-        text = "ARCADE GAMES HUB"
-        text_width = width * 0.8  # estimate text width
-        text_position = ((width - text_width) // 2, height // 3)
-        
-        # Draw text with shadow for 3D effect
-        shadow_offset = 3
-        draw.text((text_position[0] + shadow_offset, text_position[1] + shadow_offset), 
-                  text, fill=(40, 40, 40, 180))
-        draw.text(text_position, text, fill=(255, 255, 255))
-        
-        # Add some game icons
-        icons = "🎮 🎯 🎲 🎪"
-        draw.text((width // 3, height * 2 // 3), icons, fill=(255, 255, 255))
-        
-    except Exception as e:
-        # Fallback if font issues
-        print(f"Font error: {e}")
-    
-    # Convert to base64 for displaying in HTML
-    buffered = io.BytesIO()
-    img.save(buffered, format="PNG")
-    img_str = base64.b64encode(buffered.getvalue()).decode()
-    
-    return f"data:image/png;base64,{img_str}"
-
 def main():
     load_css()
     
-    # Generate banner image
-    banner_img = create_banner_image()
-    
-    # Enhanced header with image banner
-    st.markdown(f"""
+    # Simplified header - no overlapping images
+    st.markdown("""
     <div class="header-container">
-        <img src="{banner_img}" style="width: 100%; max-width: 600px; margin-bottom: 1rem;">
         <h1>Arcade Games Hub</h1>
         <p>Classic games with a modern twist - Fun for everyone!</p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Enhanced sidebar with better styling
+    # Enhanced sidebar with matching gradient
     with st.sidebar:
         st.markdown("""
-        <div class="sidebar-banner">
-            <h2>🎮 Game Selection</h2>
+        <div class="header-container">
+            <h2>Game Selection</h2>
             <p>Choose your favorite game to play</p>
         </div>
         """, unsafe_allow_html=True)
         
-        # Create custom game selector
-        games = {
-            "Battleship": "🚢",
-            "Tic Tac Toe": "❌⭕",
-            "Rock Paper Scissors Lizard Spock": "✊✋✌️🦎🖖"
-        }
+        # Create simpler game selector without emojis
+        games = [
+            "Battleship",
+            "Tic Tac Toe",
+            "Rock Paper Scissors Lizard Spock"
+        ]
         
         # Store selected game in session state
         if 'selected_game' not in st.session_state:
             st.session_state.selected_game = "Battleship"
         
-        # Display game options
+        # Display game options without emojis
         st.markdown('<div class="game-selector">', unsafe_allow_html=True)
-        for game_name, icon in games.items():
+        for game_name in games:
             is_active = st.session_state.selected_game == game_name
             active_class = "active" if is_active else ""
             
             if st.button(
-                f"{icon} {game_name}", 
+                f"{game_name}", 
                 key=f"btn_{game_name}",
                 use_container_width=True,
             ):
