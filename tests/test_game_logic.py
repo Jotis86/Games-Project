@@ -1,4 +1,10 @@
 import pytest
+import sys
+import os
+
+# Añadir el directorio raíz al path de Python
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from streamlit_app.app import (
     determine_rpsls_winner,
     check_ttt_winner,
