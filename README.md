@@ -1,6 +1,6 @@
 # 🎮 Games Project 🎮
 
-![Imagen del Proyecto](images/mando.png)
+![Imagen del Proyecto](images/portada.png)
 
 ![Commits](https://img.shields.io/github/commit-activity/m/Jotis86/Games-Project/main)
 ![Issues Abiertas](https://img.shields.io/github/issues/Jotis86/Games-Project)
