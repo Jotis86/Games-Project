@@ -2,7 +2,7 @@
 
 ![Imagen del Proyecto](images/mando.png)
 
-![Commits](https://img.shields.io/github/commit-activity/m/Jotis86/Games-Project)
+![Commits](https://img.shields.io/github/commit-activity/m/Jotis86/Games-Project/main)
 ![Issues Abiertas](https://img.shields.io/github/issues/Jotis86/Games-Project)
 ![Pull Requests](https://img.shields.io/github/issues-pr/Jotis86/Games-Project)
 ![Forks](https://img.shields.io/github/forks/Jotis86/Games-Project)
@@ -235,14 +235,6 @@ For questions, suggestions, or feedback:
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Streamlit team for their amazing framework
-- Python community for testing tools
-- Docker team for containerization
-- GitHub for CI/CD tools
-- All contributors and users of the project
 
 ---
 
